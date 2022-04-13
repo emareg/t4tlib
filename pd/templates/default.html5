@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$lang$" $if(theme)$ data-theme="$theme$"$endif$>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+$for(author-meta)$
+  <meta name="author" content="$author-meta$" />
+$endfor$
+$if(date-meta)$
+  <meta name="dcterms.date" content="$date-meta$" />
+$endif$
+$if(keywords)$
+  <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$" />
+$endif$
+$if(description-meta)$
+  <meta name="description" content="$description-meta$" />
+$endif$
+  <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
+<script type="text/javascript">
+
+function switchTheme(el) { document.documentElement.setAttribute('data-theme', el.value) }
+
+function switchCSS(cssid, el){ document.getElementById(cssid).href = el.value; }
+
+function addFontSize(addPx){
+  html = document.querySelector('html');
+  currentSize = parseFloat(window.getComputedStyle(html, null)
+    .getPropertyValue('font-size'));
+  html.style.fontSize = (currentSize + addPx) + 'px';
+}
+
+function toggleDarkMode(el){
+  var theme='light'
+  if (el.innerText == '☪'){
+    el.innerText = '☀'; theme='dark';
+  } else {
+    el.innerText = '☪';
+  }
+  document.documentElement.setAttribute('data-theme', theme)
+}
+
+
+function loadScript(url) {
+    var script = document.createElement("script");
+    script.src = url;
+    document.head.appendChild(script);
+}
+
+function makeCollapseHeading(el){
+  sec = el.parentElement;
+  if (sec.tagName != "SECTION"){ return; }
+  el.classList.add("link");
+  el.addEventListener('click', toggleCollapse);
+  el.href = '#'+sec.id;
+  container = sec.parentElement;
+  container.insertBefore(el, sec)
+  // sec.removeChild(el);
+}
+
+function pullHeadingOut(h){
+  sec = h.parentElement
+  if (sec.tagName != "SECTION" || sec.firstElementChild != h){ return; }
+  sec.parentElement.insertBefore(h, sec)
+}
+
+function makeDetails(el){
+  if (!/^(Details|Example):? .+/.test(el.innerText)){ return; }
+  sec = el.parentElement;
+  if (sec.tagName != "SECTION" || sec.firstElementChild != el){ return; }
+
+  el.innerHTML = el.innerHTML.replace(/^Details: /,"");
+  if(el.innerText.startsWith("Example")){ sec.classList.add("card", "hint"); }
+  summary = document.createElement("summary");
+  summary.appendChild(el)
+
+  sec.insertBefore(summary, sec.firstChild)
+  sec.outerHTML = sec.outerHTML.replace(/section/g,"details");
+}
+
+
+function makeRows(){
+  secs = document.querySelectorAll('section.row, div.row')
+  if(!secs || !secs[0].firstElementChild.tagName == "SECTION") { return; }
+  for (const sec of secs){
+    htag = sec.firstElementChild.firstElementChild.tagName.toLowerCase()
+    hs = sec.querySelectorAll(htag)
+    for (var i = 0; i < hs.length; i++){
+      hs[i].parentElement.classList.add("col")
+    }
+  }
+}
+
+
+function makeTabboxes(){
+  // secs = document.querySelectorAll('section[id=tabbox]')
+  secs = document.querySelectorAll('section.tabbox, div.tabbox')
+  for (const sec of secs){
+    htag = sec.firstElementChild.firstElementChild.tagName.toLowerCase()
+    hs = sec.querySelectorAll(htag)
+    sec.classList.add('tabs')
+    for (var i = 0; i < hs.length; i++){
+      hs[i].parentElement.classList.add("tab")
+      hs[i].parentElement.insertAdjacentHTML( 'beforebegin', '<input type="radio" name="tabs" id="tab'+i.toString()+'"><label for="tab'+i.toString()+'">'+hs[i].innerText+'</label>' );
+    }
+    hs[0].parentElement.previousElementSibling.previousElementSibling.setAttribute("checked", "checked");
+    // pullHeadingOut(sec.firstElementChild)
+  }
+}
+
+
+const attrStartsWith = (sel,str) => [...document.querySelectorAll(sel)]
+  .filter(ele => [...ele.attributes]
+    .filter(({name}) => name.startsWith(str))
+    .length>0
+  )
+
+
+  function toggleCollapse(ev) {
+    query = ev.target.getAttribute("href")
+    var els;
+    if (query){ els = document.querySelectorAll(query); } 
+    else { els = [ev.target.nextElementSibling]; }
+
+    for (const el of els){
+      if (el.style.maxHeight){ el.style.maxHeight = null; } 
+      else { el.style.maxHeight = el.scrollHeight + "px"; }
+    }
+  }
+
+
+// register on load
+document.addEventListener('DOMContentLoaded', function() {
+
+  headings = document.querySelectorAll('h2, h3, h4, h5, h6')
+  for (const h of headings){
+    makeDetails(h)
+  }
+
+  makeTabboxes();
+
+})
+
+
+
+</script>
+$if(presentation)$
+  <!-- Presentr Flag True -->
+  <style type="text/css"> :root, html { --rem: 3vh!important; }</style>
+  <link rel="stylesheet" href="res/css/presentr.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <script type="text/javascript" src="res/js/presentr.js"></script>
+  <script type="text/javascript" src="res/js/overlay.js"></script>
+$else$
+  <style type="text/css">
+/* 1. Theme Settings ––––––––––––––––––––-–––––––––––––– */
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400');
+
+:root, html[data-theme='light'] {
+  --rem: 12pt;
+  --width: 50rem;
+  --navpos: absolute;  /* fixed | absolute */
+  --font-p: 1em/1.7 'Open Sans', Helvetica, sans-serif;
+  --font-h: .9em/1.5 'Open Sans', Helvetica, sans-serif;
+  --font-c: .9em/1.4 monospace;
+  --border: 1px solid var(--cmed);
+  --ornament: "‹‹‹ ›››";
+  /* foreground   | background color */
+  --cfg:   #433;    --cbg:    #fff;
+  --cdark: #888;    --clight: #f5f6f7;
+  --cmed:  #d1d1d1;
+  --clink: #07c;
+  --cemph: #088;    --cemphbg: #0881;
+}
+
+html[data-theme='dark'] {
+  /* foreground   | background color */
+  --cfg:   #cecbc4; --cbg:    #252220;
+  --cdark: #999;    --clight: #333;
+  --cmed:  #566;
+  --clink: #1ad;
+  --cemph: #0b9;
+}
+
+
+/* 2. Reset –––––––––––––––––––––––––––––––––––––––––––– */
+
+/* reset block elements  */
+* { box-sizing: border-box; border-spacing: 0; margin: 0; padding: 0;}
+header, footer, figure, table, video, details, blockquote,
+ul, ol, dl, fieldset, pre, pre > code, caption {
+  display: block;
+  margin: 0.5rem 0rem 1rem;
+  width: 100%;
+  overflow: auto hidden;
+  text-align: left;
+}
+video, summary, input, select { outline:none; }
+
+/* reset clickable things  (FF Bug: select:hover prevents usage) */
+a, button, select, summary { color: var(--clink); cursor: pointer; }
+
+
+/* 3. Base Style ––––––––––––––––––––––––––––––––––––––– */
+html { font-size: var(--rem); background: var(--cbg); }
+body {
+  position: relative;
+  margin: auto;
+  max-width: var(--width);
+  font: var(--font-p);
+  color: var(--cfg);
+  padding: 3.0rem 0.6rem 0;
+  overflow-x: hidden;
+}
+body > footer { margin: 10rem 0rem 0rem; font-size: 90%; }
+p { margin: .6em 0; }
+
+/* links */
+a[href]{ text-decoration: underline solid var(--cmed); text-underline-position: under; }
+a[href^="#"] {text-decoration: none; }
+a:hover, button:not([disabled]):hover, summary:hover {
+  filter: brightness(92%); color: var(--cemph); border-color: var(--cemph);
+}
+
+/* lists */
+ul, ol, dl { margin: 1rem 0; padding: 0 0 0 2em; }
+li:not(:last-child), dd:not(:last-child) { margin-bottom: 0.5rem; }
+dt { font-weight: bold; }
+
+/* headings */
+h1, h2, h3, h4, h5 { margin: 1.5em 0 .5rem; font: var(--font-h); line-height: 1.2em; clear: both; }
+h1+h2, h2+h3, h3+h4, h4+h5 { margin-top: .5em; padding-top: 0; }  /* non-clashing headings */
+h1 { font-size: 2.2em; font-weight: 300; }
+h2 { font-size: 2.0em; font-weight: 300; font-variant: small-caps; }
+h3 { font-size: 1.5em; font-weight: 400; }
+h4 { font-size: 1.1em; font-weight: 700; }
+h5 { font-size: 1.2em; font-weight: 400; color: var(--cfg); }
+h6 { font-size: 1.0em; font-weight: 700; font-style: italic; display: inline; }
+h6 + p { display: inline; }
+
+/* tables */
+td, th {
+  padding: 0.5em 0.8em;
+  text-align: right;
+  border-bottom: 0.1rem solid var(--cmed);
+  white-space: nowrap;
+  font-size: 95%;
+}
+thead th[colspan] { padding: .2em 0.8em; text-align: center; }
+thead tr:not(:only-child) td { padding: .2em 0.8em; }
+thead+tbody tr:first-child td { border-top: 0.1rem  solid var(--cdark);  }
+td:first-child, th:first-child { text-align: left; }
+tr:hover{ background-color: var(--clight); }
+table img { display: block; }
+
+/* figures */
+img, svg { max-width: 100%; vertical-align: text-top; object-fit: cover; }
+p>img:not(:only-child) { float: right; margin: 0 0 .5em .5em; }
+figure > img { display: inline-block; width: auto; }
+figure > img:only-of-type, figure > svg:only-of-type { max-width: 100%; display: block; margin: 0 auto 0.4em; }
+figcaption, caption { font: var(--font-h); color: var(--cdark); width: 100%; }
+figcaption > *:first-child, caption > *:first-child { display: inline-block; margin: 0; }
+figure > *:not(:last-child) { margin-bottom: 0.4rem; }
+
+/* code */
+pre > code {
+  margin: 0;
+  position: relative;
+  padding: 0.8em;
+  border-left: .4rem solid var(--cemph);
+}
+code, kbd, samp {
+  padding: 0.2em;
+  font: var(--font-c);
+  background: var(--clight);
+  border-radius: 4px;
+}
+kbd { border: 1px solid var(--cmed); }
+
+/* misc */
+blockquote { border-left: 0.4rem solid var(--cmed); padding: 0 0 0 1rem;  }
+time{ color: var(--cdark); }
+hr { border: 0; border-top: 0.1rem solid var(--cmed); }
+nav { width: 100%; background-color: var(--clight); }
+::selection, mark { background: var(--clink); color: var(--cbg); }
+
+
+/* 4. Extra Style –––––––––––––––––––––––––––––––––––––– */
+
+/* Auto Numbering: figure/tables/headings/cite */
+article { counter-reset: h2 0 h3 0 tab 0 fig 0 lst 0 ref 0 eq 0; }
+article figure figcaption:before {
+  color: var(--cemph);
+  counter-increment: fig;
+  content: "Figure " counter(fig) ": ";
+}
+
+/* subfigures */
+figure { counter-reset: subfig 0 }
+article figure figure { counter-reset: none; }
+article figure > figure { display: inline-grid; width: auto; }
+figure > figure:not(:last-of-type) { padding-right: 1rem; }
+article figure figure figcaption:before {
+  counter-increment: subfig 1;
+  content: counter(subfig, lower-alpha) ": ";
+}
+
+/* listings */
+article figure pre + figcaption:before {
+  counter-increment: lst 1;
+  content: "Listing " counter(lst) ": ";
+}
+
+/* tables */
+figure > table:only-of-type { display: table; margin: 0.5em auto !important; width: fit-content; }
+article figure > table caption { display: table-caption; caption-side: bottom; }
+article figure > table + figcaption:before,
+article table caption:before {
+  color: var(--cemph);
+  counter-increment: tab 1;
+  content: "Table " counter(tab) ": ";
+}
+
+/* headings */
+article h2, h3 { position: relative; }
+article h2:before,
+article h3:before {
+  display: inline-block;
+  position: relative;
+  font-size: 0.6em;
+  text-align: right;
+  vertical-align: baseline;
+  left: -1rem;
+  width: 2.5em;
+  margin-left: -2.5em;
+}
+article h1 { counter-set: h2; }
+article h2:before { counter-increment: h2; content: counter(h2) ". "; counter-set: h3; }
+article h3:before { counter-increment: h3; content: counter(h2) "." counter(h3) ". ";}
+@media (max-width: 60rem) { h2:before, h3:before { display: none; } }
+
+/* tooltip + citation */
+article p>cite:before {
+  padding: 0 .5em 0 0;
+  counter-increment: ref; content: " [" counter(ref) "] ";
+  vertical-align: super; font-size: .6em;
+}
+article p>cite > *:only-child { display: none; }
+article p>cite:hover > *:only-child,
+[data-tooltip]:hover:before {
+  display: inline-block; z-index: 40;
+  white-space: pre-wrap;
+  position: absolute; left: 1rem; right: 1rem;
+  padding: 1em 2em;
+  text-align: center;
+  transform:translateY( calc(-100%) );
+  content: attr(data-tooltip);
+  color: var(--cbg);
+  background-color: var(--cemph);
+  box-shadow: 0 2px 10px 0 black;
+}
+[data-tooltip], article p>cite:before { 
+  color: var(--clink);
+  border: .8rem solid transparent; margin: -.8rem;
+}
+abbr[title], [data-tooltip] { cursor: help; }
+
+/* navbar */
+nav+* { margin-top: 3rem; }
+body>nav, header nav {
+  position: var(--navpos);
+  top: 0; left: 0; right: 0;
+  z-index: 41;
+  box-shadow: 0vw -50vw 0 50vw var(--clight), 0 calc(-50vw + 2px) 4px 50vw var(--cdark);
+}
+nav ul { list-style-type: none; }
+nav ul:first-child { margin: 0; padding: 0; overflow: visible; }
+nav ul:first-child > li {
+  display: inline-block;
+  margin: 0;
+  padding: 0.8rem .6rem;
+}
+nav ul > li > ul {
+  display: none;
+  width: auto;
+  position: absolute;
+  margin: 0.5rem 0;
+  padding: 1rem 2rem;
+  background-color: var(--clight);
+  border: var(--border);
+  border-radius: 4px;
+  z-index: 42;
+}
+nav ul > li > ul > li { white-space: nowrap; }
+nav ul > li:hover > ul { display: block; }
+@media (max-width: 40rem) {
+  nav ul:first-child > li:first-child:after { content: " \25BE"; }
+  nav ul:first-child > li:not(:first-child):not(.sticky) { display: none; }
+  nav ul:first-child:hover > li:not(:first-child):not(.sticky) { display: block; float: none !important; }
+}
+
+/* details/cards */
+summary>* { display: inline; }
+.card, details {
+  display: block;
+  margin: 0.5rem 0rem 1rem;
+  padding: 0 .6rem;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.card, details[open] { outline: 1px solid var(--cmed); }
+.card>img:first-child { margin: -3px -.6rem; max-width: calc(100% + 1.2rem); }
+summary:hover, details[open] summary, .card>p:first-child {
+  box-shadow: inset 0 0 0 2em var(--clight), 0 -.8rem 0 .8rem var(--clight); 
+}
+.hint { --cmed: var(--cemph); --clight: var(--cemphbg); background-color: var(--clight); }
+.warn { --cmed: #c11; --clight: #e221; background-color: var(--clight); }
+
+/* big first letter */
+article > section:first-of-type > h2:first-of-type + p:first-letter,
+article > h2:first-of-type + p:first-letter, .lettrine {
+  float: left;
+  font-size: 3.5em;
+  padding: 0.1em 0.1em 0 0;
+  line-height: 0.68em;
+  color: var(--cemph);
+}
+
+/* ornaments */
+section:after {
+  display: block;
+  margin: 1em 0;
+  color: var(--cmed);
+  text-align: center;
+  font-size: 1.5em;
+  content: var(--ornament);
+}
+
+/* side menu (aside is not intended for use in a paragraph!) */
+main aside {
+  position: absolute;
+  width: 8rem;      right: -8.6rem;
+  font-size: 0.8em; line-height: 1.4em;
+}
+@media (max-width: 70rem) { main aside { display: none; } }
+
+/* forms and inputs  */
+textarea, input:not([type=range]), button, select {
+  font: var(--font-h);
+  border-radius: 4px;
+  border: 1.5px solid var(--cmed);
+  padding: 0.4em 0.8em;
+}
+fieldset select, input:not([type=checkbox]):not([type=radio]) {
+  display: block;
+  width: 100%;
+  margin: 0 0 1rem;
+}
+button, select {
+  font-weight: bold;
+  background-color: var(--clight);
+  margin: .5em;
+  border: 1.5px solid var(--clink);
+}
+button { padding: 0.4em 1em; font-size: 85%; letter-spacing: 0.1em; }
+button[disabled]{ color: var(--cdark); border-color: var(--cmed); }
+fieldset { border-radius: 4px; border: var(--border); padding: .5em 1em;}
+textarea:hover, input:not([type=checkbox]):not([type*='ra']):hover, select:hover{
+  border: 1.5px solid var(--cemph);
+}
+textarea:focus, input:not([type=checkbox]):not([type*='ra']):focus{
+  border: 1.5px solid var(--clink);
+  box-shadow: 0 0 5px var(--clink);
+}
+p>button { padding: 0 .5em; margin: 0 .5em; }
+p>select { padding: 0;      margin: 0 .5em; }
+
+
+/* 5. Bootstrap-compatible classes ––––––––––––––––––––– */
+
+/* grid */
+.row { display: flex; margin:  0.5rem -0.6rem; align-items: stretch; }
+.row [class*="col"] { padding: 0  0.6rem; }
+.row .col   { flex: 1 1 100%; }
+.row .col-2 { flex: 0 0 16.66%; max-width: 16.66%;}
+.row .col-3 { flex: 0 0 25%; max-width: 25%;}
+.row .col-4 { flex: 0 0 33.33%; max-width: 33.33%; }
+.row .col-5 { flex: 0 0 41.66%; max-width: 41.66%; }
+.row .col-6 { flex: 0 0 50%; max-width: 50%; }
+@media (max-width: 40em) { .row { flex-direction: column; } }
+
+/* align */
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+.text-center { text-align: center; }
+.float-left  { float: left !important; }
+.float-right { float: right !important; }
+.clearfix    { clear: both; }
+
+
+/* margins */
+.mx-auto { margin-left: auto; margin-right: auto; }
+.m-0 { margin: 0 !important; }
+
+/* pading */
+.p-0 { padding: 0 !important; }
+
+
+/* be print-friendly */
+@media print { 
+  @page { margin: 1.5cm 2cm; } 
+  html {font-size: 9pt!important; } 
+  body { max-width: 27cm; }
+  p { orphans: 2; widows: 2; }
+  caption, figcaption { page-break-before: avoid; }
+  h2, h3, h4, h5 { page-break-after: avoid; }
+  .noprint, body>nav, section:after { display: none; }
+  .row { flex-direction: row; }
+}
+
+/* ============Pandoc Classless=================================================== */
+
+nav#TOC {
+  position: static !important;
+  display: block !important;
+  box-shadow: none;
+  padding: 0.5rem 0;
+}
+nav#TOC ul {list-style-type: revert; padding: revert; margin: 0 0.6rem;}
+nav#TOC ul li {display: revert; padding: revert;}
+
+
+header { text-align: center !important; }
+.subtitle { font-size: 1.3em; margin-top: 0.2em;}
+
+/* Fix Classless Problems */
+figcaption p, caption p { display: inline-block; }
+
+/* for section headers */
+section:not(.level2):after{ display: none !important; }
+
+figure { overflow-x: hidden !important; }
+span img { height: 1.4em; }
+
+/* headings */
+h2 > small, h3 > small { display: block; color: var(--cdark); }
+
+/* code for diagrams */
+pre.tabs code, pre.dia code { line-height: 1; }
+
+td pre { margin: 0; }
+
+/* links */
+.link { color: var(--clink); cursor: pointer; }
+.link:hover { filter: brightness(92%); color: var(--cemph); border-color: var(--cemph); }
+
+
+/* auto grid */
+.autorow { display: flex; margin:  0.5rem -0.5rem; align-items: stretch; }
+.autorow > * { padding: 0  0.5rem; flex: 1 1 100%; }
+
+/* Small/Big/Large classes */
+big, .big, .large { font-size: 115%; }
+small, .small { font-size: 90%; }
+.tiny { font-size: 60%; }
+
+.w-50 { width: 50%; }
+.pagebreak-before { page-break-before: always; }
+
+
+/* code formatting */
+/*https://github.com/jgm/pandoc/blob/master/test/lhs-test.html*/
+
+code span.kw,  /* Keyword */
+code span.op,   /* Operator */
+code span.cf   /* ControlFlow */
+{ font-weight: bold; } 
+
+
+code span.co, /* Comment */
+code span.an  /* Annotation */
+{ color: var(--cdark); font-style: italic; }
+
+code span.ch, /* Char */
+code span.st, /* String */
+code span.fl, /* Float */
+code span.dv /* Decimal Value */
+{ color: var(--cemph); }
+
+code span.dt, /* DataType */
+code span.fu /* Function */
+{ color: var(--clink); }
+
+code span.bu,  /* BuiltIn */
+code span.sc  /* SpecialChar */
+{ font-weight: bold; font-style: italic; } 
+
+
+
+/* =============================================================== */
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap; 
+  background: linear-gradient(0deg, var(--cbg) 1rem, var(--clight) 0%);
+  border: var(--border); border-radius: 5px;
+  padding-bottom: 0.5em;
+}
+.tabs label {
+  order: 1; /*Put the labels first*/
+  display: block;
+  cursor: pointer;
+  padding: .5rem .8rem;
+  margin: .5rem 0 -1px;
+  border-radius: 5px 5px 0 0;
+  color: var(--clink); 
+  background: var(--clight);
+}
+.tabs label:first-of-type{ margin-left: 1rem; }
+.tabs .tab {
+  order: 99; /*Put the tabs last*/
+  flex-grow: 1;
+  width: 100%;
+  display: none;
+  z-index: 10;
+  padding: 0 1rem;
+  background: var(--cbg);
+  border-top: var(--border);
+}
+.tabs input[type="radio"]:not(:checked) + label:hover { filter: brightness(90%); }
+.tabs input[type="radio"] { display: none; }
+.tabs input[type="radio"]:checked + label {   
+  border: var(--border); border-bottom: 0px;  
+  background: var(--cbg); z-index: 11; 
+}
+.tabs input[type="radio"]:checked + label + .tab { display: block; }
+
+@media (max-width: 45em) {
+  .tabs .tab, .tabs label { order: initial; }
+  .tabs label { width: 100%; margin: 0 0 -1px !important; }
+}
+@media print { .tabs label + .tab { display: block; } .tabs label { display: none; } } 
+
+/* =============================================================== */
+
+    div.csl-left-margin { min-width:2em;  float:left; } div.csl-entry { margin-bottom: .5em; }
+    .qdoc-buttons{text-align: right;} .qdoc-buttons>* {color: var(--cmed)!important;}
+  </style>
+$endif$
+$for(css)$
+  <link rel="stylesheet" href="$css$" />
+$endfor$
+$for(addcss)$
+  <link rel="stylesheet" href="$addcss$" />
+$endfor$
+$for(addjs)$
+  <script type="text/javascript" src="$addjs$"></script>
+$endfor$
+$if(math)$
+  $math$
+$endif$
+$for(header-includes)$
+  $header-includes$
+$endfor$
+</head>
+<body>
+<div class="qdoc-buttons noprint"><a onclick="toggleDarkMode(this)">☪</a>&nbsp;<a onclick="addFontSize(-1)">ᴀ-</a>&nbsp;|&nbsp;<a onclick="addFontSize(1)">A+</a></div>
+$for(include-before)$
+$include-before$
+$endfor$
+$if(title)$
+<header id="title-block-header" style="overflow-x: hidden;">
+<h1 class="title">$title$</h1>
+$if(subtitle)$
+<p class="subtitle">$subtitle$</p>
+$endif$
+
+<div class="row">
+$for(author)$
+  <div class="col">
+    <p class="author">$author.name$
+    $if(author.email)$
+    <br><small><a href="mailto:$author.email$">$author.email$</a></small>
+    $endif$
+    </p>
+  </div>
+$endfor$
+</div>
+
+$if(date)$
+<p class="date">$date$</p>
+$endif$
+</header>
+$endif$
+$if(toc)$
+$if(toc-title)$
+<h2 id="$idprefix$toc-title">$toc-title$</h2>
+$else$
+<h2 id="$idprefix$toc-title">Table of Contents</h2>
+$endif$
+<nav id="$idprefix$TOC" role="doc-toc">
+$table-of-contents$
+</nav>
+$endif$
+<article>
+$body$  
+</article>
+$for(include-after)$
+$include-after$
+$endfor$
+</body>
+</html>

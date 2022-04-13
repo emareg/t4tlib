@@ -1,0 +1,222 @@
+
+/* Style Pandoc classes 
+--------------------------------------------------------*/
+.subtitle { font-size: 1.3em; margin-top: 0.2em;}
+
+/* code for diagrams */
+pre.tabs code, pre.dia code { line-height: 1; }
+
+/* links */
+.link { color: var(--clink); cursor: pointer; }
+.link:hover { filter: brightness(92%); color: var(--cemph); border-color: var(--cemph); }
+
+
+
+/* Fix Pandoc own Behavior 
+--------------------------------------------------- */
+header { text-align: center !important; }
+
+/* Pandoc puts Paragraphs in captions, we want inline */
+figcaption p, caption p { display: inline-block; }
+
+/* for section headers */
+section:not(.level2):after{ display: none !important; }
+
+figure { overflow-x: hidden !important; } /*Probably for plotly?*/
+span img { height: 1.4em; }
+
+/* headings */
+h2 > small, h3 > small { display: block; color: var(--cdark); }
+
+
+td pre { margin: 0; }
+
+
+/* Avoid TOC being the navigation bar */
+nav#TOC {
+  position: static !important;
+  display: block !important;
+  box-shadow: none;
+  padding: 0.5rem 0;
+}
+nav#TOC ul {list-style-type: revert; padding: revert; margin: 0 0.6rem;}
+nav#TOC ul li {display: revert; padding: revert;}
+
+
+/* avoid numbering of figures (done by xnos) */
+article figure figcaption:before { content: "Figure " !important; }
+article table caption:before { content: "Table " !important; }
+
+
+/* Extra Behavior that Could be added to Classless
+--------------------------------------------------- */
+
+/* extra tags */
+weak { color: var(--cdark); }
+
+
+/* Make first paragraph in a card the heading */
+.card>*:first-child>p:first-child { font-weight: bold; margin: .5rem 0;}
+
+
+/* Figure with HTML content ------------------- */
+figure embed { width: 100%; }
+
+
+/* dark mode */
+html[data-theme='dark'] {
+	/* foreground   | background color */
+	--cfg:   #cecbc4; --cbg:    #252220;
+	--cdark: #999;    --clight: #333;
+	--cmed:  #566;
+	--clink: #1ad;
+	--cemph: #0b9;
+}
+
+/* fix blockquote cites */
+blockquote>p>cite { pointer-events: none; display: block; text-align: right; margin-top: -1.5em; }
+
+article blockquote>cite:last-child { display: block; text-align: right; font-style: normal; }
+article blockquote>p:nth-of-type(2) { font-size: 0.9em; color: var(--cdark); margin-top: -0.6em; }
+
+blockquote.warning { background-color: #e222; border-color: #c11; }
+
+
+
+
+
+/* Add Fancy Blockquotes*/
+html[data-theme='sepia'] blockquote{ 
+	border-left: none;
+	overflow: visible;
+	position: relative;
+	padding: 0.5em 2.1em; 
+	margin: 0.5em 0;
+}
+html[data-theme='sepia'] blockquote>p { position: relative; }
+html[data-theme='sepia'] blockquote>p:first-of-type::before,
+html[data-theme='sepia'] blockquote>p:last-of-type::after{
+	position: absolute;
+	font-size: 5rem;
+	font-style: normal;
+	color: var(--cmed);
+  line-height: 1;
+}
+html[data-theme='sepia'] blockquote>p:first-of-type::before{ content: "“"; top: -1rem;   left: -2.3rem; }
+html[data-theme='sepia'] blockquote>p:last-of-type::after { content: "”"; bottom: -2.5rem; right: -2rem; }
+
+
+/* Add portrait to blockquotes */
+blockquote>img {display: inline-block; width: 5em; vertical-align: middle; margin: 0 2.5rem 1rem -2.0rem; }
+blockquote>img+p {display: inline-block; width: calc(100% - 6em); min-width: 20em;}
+
+
+
+
+
+/* auto grid */
+.autorow { display: flex; margin:  0.5rem -0.5rem; align-items: stretch; }
+.autorow > * { padding: 0  0.5rem; flex: 1 1 100%; }
+
+/* Small/Big/Large classes */
+big, .big, .large { font-size: 115%; }
+small, .small { font-size: 90%; }
+.tiny { font-size: 60%; }
+
+
+
+
+
+
+/* Detail Toggles ------------------------- */
+
+section[id^="details"] {   
+	max-height: 0;
+  overflow-y: hidden;
+  transition: max-height 0.2s ease-out;
+}
+/*section[id^="details"] > *:first-child{ color: var(--clink); cursor: pointer; display: list-item; }*/
+/*section[id^="details"]:hover > *:not(:first-child) { display: initial; }*/
+summary > h2:before, summary > h3:before { display: none !important; }
+
+
+
+/* Matplotlib Scale ----------------------- */
+figure svg { height: auto; }
+
+
+/*svg * {
+    transform-origin: unset;
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+}*/
+
+
+
+@media (max-width: 642px) {
+
+	html[data-theme]{
+		--rem: 0.9em !important;
+		/*font-size: calc(0.9 * var(--rem));*/
+	}
+
+	/* SVG preparation */
+	figure svg {
+		padding: 0 0 .5em 1em !important;
+		overflow: visible;
+	}
+
+	svg g[id*="legend"]{ transform-origin: 90% 40%; }
+	svg g[id*="ytick_"] text{ transform-origin: 100% 50%; }
+	svg g[id*="xtick_"] text{ transform-origin: 50% 0%; }
+
+
+	/* ticks and legend */
+	svg g[id*="legend"],
+	svg g[id*="ytick_"] text,
+	svg g[id*="xtick_"] text
+	{
+	    transform-box: fill-box;
+	    transform: scale(1.3);
+	}
+
+	/* labels */
+	svg g[id="matplotlib.axis_1"] > g[id*="text"]{ transform: translateY(.8em); }
+	svg g[id="matplotlib.axis_2"] > g[id*="text"]{ transform: translateX(-.8em); }
+	svg g[id="matplotlib.axis_1"] > g[id*="text"] text { font-size: 1.2em !important; }
+	svg g[id="matplotlib.axis_2"] > g[id*="text"] text { font-size: 1.2em !important; }
+}
+
+
+
+
+
+
+/* Code Formatting ----------------------- */
+/*https://github.com/jgm/pandoc/blob/master/test/lhs-test.html*/
+
+code span.kw,  /* Keyword */
+code span.op,   /* Operator */
+code span.cf   /* ControlFlow */
+{ font-weight: bold; } 
+
+
+code span.co, /* Comment */
+code span.an  /* Annotation */
+{ color: var(--cdark); font-style: italic; }
+
+code span.ch, /* Char */
+code span.st, /* String */
+code span.fl, /* Float */
+code span.dv /* Decimal Value */
+{ color: var(--cemph); }
+
+code span.dt, /* DataType */
+code span.fu /* Function */
+{ color: var(--clink); }
+
+code span.bu,  /* BuiltIn */
+code span.sc  /* SpecialChar */
+{ font-weight: bold; font-style: italic; } 
+
+

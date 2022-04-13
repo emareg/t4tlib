@@ -1,0 +1,258 @@
+/* Presentr CSS */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
+
+
+/*set root size*/
+html { 
+	font-size: 3vh; 
+	--pslide: 2rem;  /*padding of slides*/
+	cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="16" height="16"><circle cx="8" cy="8" r="8" style="fill: red;"/></svg>'), auto;
+}  
+
+
+/*common style for slides and overlays*/
+#overlay,
+#footbar,
+[class*="slide"],
+#progressbar{ 
+	display: block;
+	color: #555;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 0 var(--pslide);
+	background-color: white;
+}
+
+/* overlay for drawing */
+body #overlay{
+  display: none; /* Hidden by default */
+  padding: 0;
+  top: 0;
+
+  background-color: rgba(0,0,0,0.05); /* Black background with opacity */
+  z-index: 2; 
+}
+
+
+
+/* footer */
+body #footbar, 
+[class*="slide"]:after { 
+	font-size: calc(0.7 * var(--rem)); 
+	z-index: 4;
+	color: #666;
+}
+
+#footbar span{ padding: 0 0.3em; }
+#footbar span:first-child { padding-left: 0; }
+#footbar span:last-child { padding-right: 0; }
+
+/* progress bar */
+#footbar #progressbar{
+	position: absolute;
+	width: 0;
+	padding: 0;
+	height: 7px;
+	background-color: #3070b3;
+}
+
+
+
+
+
+/* https://codepen.io/roeey/pen/NmomGx */
+.spotlight {
+	display: none;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-image: radial-gradient(circle, transparent 40px, rgba(0, 0, 0, .5) 55px);
+	cursor: none;
+}
+
+
+
+
+/* h2 heading with TUM Logo */
+[class*="slide"] h2:after { content: "";
+background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 740 390' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m405 0 -35-0v320h-80v-320l-290-0v70h70v320h70v-320h80v320h35 150 35v-320h80v320h70v-320h80v320h70v-355-35h-335z' fill='%230065bd' fill-rule='evenodd' /%3E%3C/svg%3E");
+/*background-image: url('tumlogo.svg');*/
+background-position: right top;
+background-repeat: no-repeat;
+float: right; height: 1em; width: 2em;
+}
+
+
+/* svg scaling */
+figure > svg {
+	width: 100%;
+	height: calc(100% - 1.8em);
+}
+
+
+/* Presentr Related
+---------------------------------------------------*/
+
+/* basic slide layout */
+body [class*="slide"]{
+    display: flex;
+    flex-direction: column;
+    padding: var(--pslide);
+    position: absolute;
+    overflow-y: hidden;
+    top: 0;
+}
+
+
+.next-slide {
+    transform: translateX(100vw);
+    transition: all 0.3s;
+}
+
+.current-slide {
+    transition: all 0.3s;
+    filter: none;
+    transform: none;
+}
+
+.previous-slide {
+    transition: all 0.3s;
+    filter: none;
+    transform: translateX(-100vw);
+}
+
+/* extra: make first list layers fade in */
+/*[class*="slide"] ul > li,*/
+.frag {
+    opacity: 0;
+    transform: translateY(-0.7vh);
+    transition: all 0.5s;
+}
+
+.active-frag {
+    transform: none !important;
+    opacity: 1 !important;
+}
+
+@keyframes normalize {
+    to {
+        transform: none;
+        opacity: 1;
+    }
+}
+
+
+
+/* Enable PDF printing
+---------------------------------------------------*/
+
+@media print {
+	#overlay, #spotlight, #progressbar{ display: none !important; }
+
+	[class*="slide"] {
+		position: relative !important;
+		margin: 0 !important;
+		height: 100vh;
+		width: 100vw;
+    	page-break-after: always;
+    	page-break-inside: avoid;
+		transform: none !important; opacity: 1; 
+		counter-increment: slides;
+		background-clip: content-box;
+	}
+
+
+	@page {
+	  /*size: 1920px 1080px;*/
+	  /*size: 1280px 720px;*/
+	  /*size: 1440px 810px;*/
+	  size: 1600px 900px;
+	  margin: 0;
+	}
+
+	#footbar{ position: fixed; width: calc(100% - 5rem); }
+	#footbar p span:not(:first-child){ display: none !important; }
+	#footbar > p { margin-top: 0 !important; }
+
+	[class*="slide"]:after { 
+		position: absolute;
+		display: inline-block;
+		margin: 0;
+		font-size: calc(0.7 * var(--rem)); 
+		text-align: right;
+		bottom: 1em;
+		right: var(--pslide);
+		color: #666;
+		background-color: white;
+		z-index: 144;
+		content: "Slide " counter(slides);
+	}
+	/*header:after{ bottom: 1em !important; }*/
+	.frag, ul > li { transform: none !important; opacity: 1 !important; }
+
+}
+
+
+/* Adjust Classless CSS
+---------------------------------------------------*/
+
+body.presentr {
+	padding: 0; margin: 0;
+	position: initial;
+	overflow-x: hidden;
+	font: var(--rem) 'Open Sans', Helvetica, sans-serif;
+	color: #433;
+	line-height: 1.5em;
+	counter-reset: slides 0
+}
+
+
+
+/* headings */
+h1, h2, h3, h4, h5 { margin: 0.5em 0 0; line-height: 1.2em; }
+h1+h2, h2+h3, h3+h4, h4+h5 { margin-top: .5em; }
+h1 { font-size: 2.2em; font-weight: 400; font-variant: normal; }
+h2 { font-size: 1.9em; font-weight: 700; font-variant: normal; }
+h3 { font-size: 1.5em; font-weight: 400; font-variant: normal; }
+h4 { font-size: 1.1em; font-weight: 700; font-variant: normal; }
+h5 { font-size: 1.2em; font-weight: 400; color: #888; }
+h6 { font-size: 1.0em; font-weight: 600; font-style: italic; display: inline; }
+h6 + p { display: inline; }
+.subtitle { font-size: 1.5em;  }
+h2:first-child {margin-top: 0;}
+h1.title { margin-top: 2.5em; line-height: 1.5; }
+header { margin: 0 !important; }
+
+
+/* hide pseude elements */
+.presentr article h2:before { display: none !important; }
+.presentr article h3:before { display: none !important; }
+
+/* limit height of images */
+p > img { max-height: 100%; }
+figure > img { max-height: calc(100% - 2em); }
+figure > figcaption:empty,
+figure > figcaption:-moz-only-whitespace  { display: none !important; }
+
+pre > code { font-size: 0.75em; }
+
+table { overflow-y: auto; }
+
+.row { max-height: calc(100% - 3em); }
+.col { max-height: 100%; height: 100%; }
+figure { max-height: 100%; height: 100%; }
+
+/* no ornament after section */
+section:after{ display: none; }
+
+/* fix cursor on video */
+video { cursor: auto !important; max-height: calc(100% - 3em); }
+
+input[type="text"]{ font-size: 1em; }
+
+meter { margin-left: 1em; }
+
+.row .col-5 { flex: 0 0 41.666%; }

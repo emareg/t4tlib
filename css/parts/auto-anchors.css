@@ -1,0 +1,40 @@
+/* Partial CSS that styles anchors created with auto-anchors.js  */
+
+/* basic anchor style ------------------ */
+.anchor-link, .anchor-link a { 
+	color: var(--cmed); 
+	text-decoration: none; 
+}
+
+/* anchors for headings ------------------ */
+h1 .anchor-link, h2 .anchor-link { 
+	opacity: 0; 
+	position: absolute;
+	top: 0;
+	margin: 0 0 0 -4rem; 
+	width: 6rem; 
+	padding-right: 2rem; 
+	background: var(--cbg) 
+	content-box; z-index: 16; 
+}
+
+h1 .anchor-link a, h2 .anchor-link a { 
+	display: block; 
+	text-align: center; 
+}
+h1:hover > .anchor-link, h2:hover > .anchor-link { opacity: 1; }
+
+
+/* anchors for paragraphs ---------------- */
+article p[id] .anchor-link { 
+	margin: 0 -.5em 0 .5em; 
+	position: absolute;
+	display: none;  
+}
+article p[id]:hover > .anchor-link,
+article figcaption[id]:hover > .anchor-link
+ { display: inline-block !important;  }
+
+/* animation when visting sit with anchor  */
+@keyframes highlight {0% { background: #0885; } 100% { background: none; } } 
+:target { animation: highlight 1.5s; }

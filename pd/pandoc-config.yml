@@ -1,0 +1,128 @@
+# T4T Pandoc Config File
+# See: https://pandoc.org/MANUAL.html#defaults-files
+#
+# Variables:
+# - ${HOME} syntax resolve to environment variables
+# - ${.} will resolve to the directory containing this file. 
+
+
+data-dir: ${.}  # set data dir
+
+
+reader: markdown+raw_tex+gfm_auto_identifiers+citations+markdown_in_html_blocks
+
+
+
+# Output options
+
+
+## Debugging  verbosity = ERROR, WARNING, or INFO
+verbosity: WARNING
+fail-if-warnings: false
+dump-args: false
+ignore-args: false
+trace: false
+
+
+
+
+# Reader Options
+
+default-image-extension: '.svg'
+
+
+## All media in one folder
+extract-media: 'res/pd-media'  # test this
+
+
+## Filter
+filters: 
+  - "pd-info-cards.lua"
+  - "pd-acronyms.lua"
+  - "pd-dia.lua"
+  - pandoc-xnos
+  - "pd-include-img.lua"
+
+
+
+  
+resource-path: ['.','res', 'res/img']
+
+
+# metadata values specified here are parsed as literal
+# string text, not markdown:
+metadata:
+
+  # pandoc-plot config file in the same dir
+  #plot-configuration: ${.}/plot-config.yml
+
+  # xnos-filter options
+  xnos-warning-level: 1
+  fignos-plus-name: "Figure "
+  fignos-caption-name: ""
+  tablenos-caption-name: ""
+
+  # pd-code-dia options
+  tmpdir: "./tmp"
+  builddir: "./build"
+  reldiadir: "res/dia"
+
+
+
+# note that structured variables may be specified:
+variables:
+  # LaTeX Specific
+  documentclass: book
+  classoption:
+    - twosides
+  mainfont: "Libertinus Serif"
+
+
+
+
+
+
+# Gneral Writer Options
+
+
+## Comments
+strip-comments: true
+
+
+## Table of Contents
+table-of-contents: true
+toc-depth: 2
+number-sections: false
+
+## Listings
+highlight-style: pygments
+
+
+## Includes
+# Note that these take files, not their contents:
+# include-before-body: []
+# include-after-body: []
+# include-in-header: []
+
+
+## Citations (call --citeproc at the end of CLI)
+csl: ieee
+citeproc: true
+cite-method: biblatex
+
+
+
+
+# Specific Writer Options
+
+## LaTeX/PDF Output Specific
+pdf-engine: lualatex
+pdf-engine-opts:
+  - "-halt-on-error src.tex | grep '^!.*' -A200 --color=always"
+listings: true
+top-level-division: section
+
+
+## HTML Output Specific
+section-divs: true
+
