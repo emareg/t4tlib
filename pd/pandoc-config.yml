@@ -32,7 +32,7 @@ default-image-extension: '.svg'
 
 
 ## All media in one folder
-extract-media: 'res/pd-media'  # test this
+# extract-media: 'res/pd-media'  # test this
 
 
 ## Filter
@@ -90,7 +90,7 @@ strip-comments: true
 
 
 ## Table of Contents
-table-of-contents: true
+# table-of-contents: true
 toc-depth: 2
 number-sections: false
 
