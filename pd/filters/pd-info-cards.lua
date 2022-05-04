@@ -18,6 +18,7 @@ TRIGGER_DETAILS_WARNING={}
 
 local CARD_MAP = {
   -- class  = trigger words
+  abstract  = {sym = '💡 ', trigger={"Abstract:", "TL;DR:"}},
   hint      = {sym = '💡 ', trigger={"Example:", "Hint:", "Tipp:"}},
   info      = {sym = 'ℹ️ ', trigger={"Info:", "Note:", "Notice:", "Explanation:"}},
   important = {sym = '❗ ', trigger={"Attention:", "Important:", "Remember:"}},
