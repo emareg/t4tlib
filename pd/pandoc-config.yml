@@ -72,9 +72,9 @@ metadata:
 # note that structured variables may be specified:
 variables:
   # LaTeX Specific
-  documentclass: book
-  classoption:
-    - twosides
+  # documentclass: scrartcl
+  # classoption:
+  #   - twosides
   mainfont: "Libertinus Serif"
 
 
@@ -108,7 +108,7 @@ highlight-style: pygments
 ## Citations (call --citeproc at the end of CLI)
 csl: ieee
 citeproc: true
-cite-method: biblatex
+# cite-method: biblatex
 
 
 

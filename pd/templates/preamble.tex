@@ -79,3 +79,15 @@
 
 \makeatother
 
+
+% Pandoc Hacks
+\let\Begin\begin
+\let\End\end
+\newenvironment{starred}{\renewenvironment{figure}{\begin{figure*}\centering}{\end{figure*}}}{}
+\newenvironment{figurestar}{\begin{figure*}\centering}{\end{figure*}}
+
+\RequirePackage{svg}
+
+
+
+

@@ -4,7 +4,8 @@
 
 /*set root size*/
 html { 
-	font-size: 3vh; 
+	--rem: 3.5vh !important;
+	font-size: 3.5vh; 
 	--pslide: 2rem;  /*padding of slides*/
 	cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="16" height="16"><circle cx="8" cy="8" r="8" style="fill: red;"/></svg>'), auto;
 }  
@@ -73,7 +74,9 @@ body #footbar,
 	cursor: none;
 }
 
-
+/* lists */
+[class*="slide"] ul { margin: .5em 0; }
+[class*="slide"] li li { font-size: 0.9em; line-height: 1.5em; }
 
 
 /* h2 heading with TUM Logo */
@@ -215,9 +218,9 @@ body.presentr {
 h1, h2, h3, h4, h5 { margin: 0.5em 0 0; line-height: 1.2em; }
 h1+h2, h2+h3, h3+h4, h4+h5 { margin-top: .5em; }
 h1 { font-size: 2.2em; font-weight: 400; font-variant: normal; }
-h2 { font-size: 1.9em; font-weight: 700; font-variant: normal; }
+h2 { font-size: 1.8em; font-weight: 700; font-variant: normal; }
 h3 { font-size: 1.5em; font-weight: 400; font-variant: normal; }
-h4 { font-size: 1.1em; font-weight: 700; font-variant: normal; }
+h4 { font-size: 1.3em; font-weight: 700; font-variant: normal; }
 h5 { font-size: 1.2em; font-weight: 400; color: #888; }
 h6 { font-size: 1.0em; font-weight: 600; font-style: italic; display: inline; }
 h6 + p { display: inline; }
