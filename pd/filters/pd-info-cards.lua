@@ -18,21 +18,31 @@ TRIGGER_DETAILS_WARNING={}
 
 local CARD_MAP = {
   -- class  = trigger words
+  abstract  = {sym = '💡 ', trigger={"Abstract:", "TL;DR:"}},
   hint      = {sym = '💡 ', trigger={"Example:", "Hint:", "Tipp:"}},
-  info      = {sym = 'ℹ️ ', trigger={"Info:", "Note:", "Notice:"}},
+  info      = {sym = 'ℹ️ ', trigger={"Info:", "Note:", "Notice:", "Explanation:"}},
   important = {sym = '❗ ', trigger={"Attention:", "Important:", "Remember:"}},
-  warn   = {sym = '⚠️ ', trigger={"Warn:", "Warning:", "Caution:", "Danger:", "Error:"}}
+  warning   = {sym = '⚠️ ', trigger={"Warn:", "Warning:", "Caution:", "Danger:", "Error:"}}
 }
 
+
+local DETAILS_MAP = {
+  -- class  = trigger words
+  example   = {"Example", "Use-case"},
+  info      = {"Info", "Information", "Note", "Notice"},
+  tip       = {"Explanation", "Details", "Remember"}
+}
 
 
 -- Templates
 ---------------------------------------------------
 DETAILS_START = [[
-<details class="%s">
-  <summary>]]
+<details class="%s" markdown>
+  <summary markdown>]]
 SUMMARY_END = "</summary>"
-DETAILS_END = "</details>"
+DETAILS_END = "</details>\n"
+
+P_ADOM="<p class=\"admonition-title\" markdown>%s</p>"
 
 
 -- Helper Functions
@@ -68,13 +78,20 @@ end
 
 --  create div card
 local function card(heading, body, class)
-  parHead = pandoc.Para(pandoc.Strong(heading))
-  divHead = pandoc.Div(parHead, {class='card-header'})
-  divBody = pandoc.Div({body}, {class='card-body'})
+  if FORMAT:match 'markdown' then
+    -- divHead = pandoc.Para(pandoc.Str(heading:sub(4)), {class='admonition-title', markdown=''})
+    divHead = pandoc.RawBlock('html', P_ADOM:format( pandoc.utils.stringify(heading ) ) )
+    divBody = pandoc.Para(body)
+    -- return { pandoc.Para({ pandoc.Str("???+ "..class..' "'..heading..'"') }), pandoc.BlockQuote({table.unpack(body.content)}) }
+  else
+    parHead = pandoc.Para(pandoc.Strong(heading))
+    divHead = pandoc.Div(parHead, {class='card-header admonition-title'})
+    divBody = pandoc.Div({body}, {class='card-body'})
+  end 
   if FORMAT:match 'gfm' then
     return pandoc.BlockQuote({pandoc.Para({pandoc.Strong(heading), table.unpack(body.content)})})
   end 
-  return pandoc.Div({divHead, divBody}, {class = 'card '..class})
+  return pandoc.Div({divHead, divBody}, {class = 'card admonition '..class, markdown=''})
 end
 
 
@@ -97,31 +114,78 @@ end
 
 
 
-function Para(el)
-  -- print_table(el.content[1])
-  if not el.content[1] then return end
-  if not el.content[1]['t'] == "Str" then return end
-  firstWord = el.content[1]['text']
-  if FORMAT:match 'html' or FORMAT:match 'gfm' then
-    -- print_table(el.content[1])
-    if starts_with(firstWord, "Q:") then
-      for key, val in pairs(el.content) do
-        if val['t'] == "Str" and val['text'] == "A:" then
-          head = pandoc.Para({table.unpack(el.content, 2, key - 1)})
-          body = pandoc.Para({table.unpack(el.content, key+1, #el.content)})
-          return details(head, body, '')
-        end
+-- returns table {str(firstWord), {firstLine}, {remainder} }
+function parse_para(p)
+  if #p.content < 3 then return end
+  if p.content[1]['t'] ~= "Str" then return end
+  heading = {p.content[1]}
+  break_idx = 2
+  for idx, val in pairs(p.content) do
+    if val['t'] == "SoftBreak" then 
+      break_idx = idx
+      if break_idx > 2 then
+        heading = {table.unpack(p.content, 2, break_idx)}
       end
-      return nil
+      break
+    end
+  end
+  return {p.content[1]['text'], heading, {table.unpack(p.content, break_idx+1, #p.content)}}
+end
+
+
+function Para(el)
+  if #el.content < 3 then return end
+  p = parse_para(el)
+  if not p then return end
+  -- print(table.unpack(p))
+  if FORMAT:match 'html' or FORMAT:match 'gfm' or FORMAT:match 'markdown' then
+    -- print_table(el.content[1])
+    if p[1] == "Q:" and p[3][1]['t'] == "Str" and p[3][1]['text'] == "A:" then
+      head = pandoc.Para(p[2])
+      body = pandoc.Para({table.unpack(p[3], 3)})
+      return details(head, body, 'question')
+    end
+    if p[1] == "Details:" then
+      return details(pandoc.Para(p[2]), pandoc.Para(p[3]), 'info')
     end
     for key, val in pairs(CARD_MAP) do
-      if starts_with(firstWord, val.trigger) then
-        -- todo: check if contains SoftBreak, if yes make that the heading or check if Strong
-        table.remove(el.content, 1)
-        return card(val.sym..firstWord, el, key)
+      if starts_with(p[1], val.trigger) then
+        return card(p[2], p[3], key)
       end
     end
   end
 end
 
 
+
+function Pandoc(doc)
+  active_head_lvl = 0
+  blocks = doc.blocks:walk {
+    Header = function(h)
+      local finish
+      if h.level <= active_head_lvl then
+        active_head_lvl = 0
+        finish = pandoc.RawBlock('html', DETAILS_END)
+      end
+      htab = parse_para(h)
+      if not htab then 
+        if finish then return {finish, h} end
+        return
+      end
+      for key, triggers in pairs(DETAILS_MAP) do
+        if starts_with(htab[1], triggers) then
+          detailsStart = pandoc.RawBlock('html', DETAILS_START:format(key))
+          summaryEnd = pandoc.RawBlock('html', SUMMARY_END)
+          active_head_lvl = h.level
+          if finish then
+            return {finish, detailsStart, pandoc.Para(h.content), summaryEnd}
+          else
+            return {detailsStart, pandoc.Para(h.content), summaryEnd}
+          end
+        end
+      end
+      if finish then return {finish, h} end
+    end
+  }
+  return pandoc.Pandoc(blocks, doc.meta)
+end

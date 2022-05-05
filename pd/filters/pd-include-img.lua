@@ -14,7 +14,12 @@ local HTML_FIG_T = [[
 </figure>
 ]]
 
-
+local HTML_OBJECT_T = [[
+<figure>
+  <object data="%s" type="image/svg+xml"></object>
+  <figcaption>%s</figcaption>
+</figure>
+]]
 
 -- Helper Functions
 ---------------------------------------------------
@@ -47,9 +52,14 @@ function replaceImg(el)
     -- el.caption or el.title or -- el.caption=table, title="fig"
 
     local file = io.open(el.src, "rb")
-    -- print("Reading Image Source", el.src)
-    if not file then return end
-    html = file:read "*a"
+    local html = ""
+    if not file then 
+      -- check mediabag
+      _, html = pandoc.mediabag.lookup(el.src:match'^%s*(.*)')
+      if not html then return end
+    else
+      html = file:read "*a"
+    end
     -- print("Read: ", html)
     if el.caption then
       fig_start = pandoc.RawBlock("html", "<figure id='"..el.identifier.."'>"..html.."\n<figcaption>")
@@ -77,7 +87,7 @@ end
 
 
 function Para(el)
-  if FORMAT == "html" and #el.c == 1 and el.c[1].t == "Image" then
+  if (FORMAT == "html" or FORMAT == "markdown") and #el.c == 1 and el.c[1].t == "Image" then
     return replaceImg(el.content[1])
   end
 end
