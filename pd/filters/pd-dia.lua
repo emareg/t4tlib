@@ -52,7 +52,7 @@ local TEX_CMD  = [[
   echo "${pdf}";
   echo "${out}";
   texfot pdflatex -output-directory=${outdir} ${in}; 
-  inkscape --without-gui --file="${pdf}" --export-plain-svg="${out}"
+  inkscape "${pdf}" --export-type=svg --export-filename="${out}"
 ]]
 
 
