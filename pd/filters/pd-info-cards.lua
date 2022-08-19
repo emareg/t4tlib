@@ -133,6 +133,19 @@ function parse_para(p)
 end
 
 
+function BlockQuote(el)
+  p = parse_para(el.content[1])
+  if not p then return end
+  for key, val in pairs(CARD_MAP) do
+    if starts_with(p[1], val.trigger) then
+      bcStart = pandoc.RawBlock('html', "<Blockquote class=\""..key.."\">")
+      bcEnd = pandoc.RawBlock('html', '</Blockquote>')
+      return {bcStart, el.content[1], bcEnd}
+    end
+  end
+end
+
+
 function Para(el)
   if #el.content < 3 then return end
   p = parse_para(el)
