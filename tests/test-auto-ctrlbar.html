@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- title, description, favicon -->
+    <title>Test Auto Cotrnolbar</title>
+	<meta name="author" content="Emanuel Regnath">
+    <meta name="description" content="Identify Identifiers" />
+    <link rel="icon" type="image/png" href="favicon.png">
+
+
+	<!-- load basic style sheet -->
+	<link rel="stylesheet" href="https://classless.de/classless.css">
+	<script type="text/javascript" src="../js/parts/auto-controlbar.js"></script>
+</head>
+<body>
+		
+	<!-- Header: -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->  
+	<header>
+
+		<h1>Test Auto Controlbar</h1>
+		<p>E. Regnath, <time>2020-12-15</time></p>
+		<img src="img/headerimg.jpg" alt="An image"/>
+	
+	</header>
+
+	<!-- Navigation: -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <nav>
+		<ul>
+		  <li><span><img style="height: 1.3em;" src="favicon.png"></span></li>
+		  <li><a href="#ids">Identifiers</a></li>
+		  <li class="float-right"><a href="https://github.com/emareg/id2">@GitHub</a></li>
+		</ul>
+    </nav>
+    
+    
+	<!-- Content: -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<main>
+		
+		<section> 
+
+		
+			   
+			<h2>Simple but Elegant</h2>
+			<p>Text in from of paragraphs is the main ingredient for most articles. 
+			  Therefore, the appearance of text over multiple lines will account for the basic <i>look & feel</i>. The initial drop letter on the first paragraph will set a visually exiting impression. Note that this is automatically inserted for the first paragraph inside an <code>&lt;article&gt;</code> tag and does not require any additional styling.
+			</p> 
+			<aside>The citation after CSS3 is inserted automatically and it is easy to provide a reference list at the end.</aside>
+			<p>The typography of Classless is purely based on CSS3. <cite><a href="https://www.w3.org/TR/css-values-3/">W3C: <q>CSS Values and Units Module Level 3</q>, 2019</a></cite>
+			You can use the standard HTML5<cite><a href="https://en.wikipedia.org/wiki/HTML5">Wikipedia: <q>HTML5</q></a></cite> tags to <i>emphasize</i> certain words.
+			  Inline quotations with <code>&lt;q&gt;</code> such as <q>This is Lars’ car!</q> will insert automatically the correct quotation marks. Block quotations are also possible:
+			</p>
+			<blockquote>
+			  <p>Some people say, How can you live without knowing? I do not know what they mean. I always live without knowing. That is easy. How you get to know is what I want to know.</p>
+			  <p>Richard P. Feynman<cite><a href="https://en.wikiquote.org/wiki/Richard_Feynman#The_Meaning_of_It_All_(1999)">Richard P. Feynman: “The Meaning of It All: Thoughts of a Citizen-Scientist”, 1997</a></cite></p>
+			</blockquote>
+		
+			<h6>Mini Sections:</h6>
+			<p>Use the <code>&lt;h6&gt;</code> tag to create a bold inline heading for the first paragraph. To do this we also have to inline that paragraph.</p>
+			<p>However, the following paragraph will be displayed as block again. </p>
+		
+			</section>
+			<section>
+				<h2>Tables, Figures & Code Listings</h2>
+				<p>In typesetting systems (e.g <a href="https://en.wikipedia.org/wiki/LaTeX">LaTeX</a>) it is easy to define several environments that will have their own number and caption. We try to reproduce this behavior for the most common environments: tables and figures.</p>
+			
+			
+				<h3>Tables</h3>
+				<p>Classless applies some modern styling on the standard table elements. All columns except the first one are right aligned by default which makes it easy to compare numbers. Of course you can change this behavior with our utility classes.</p>
+			
+			
+				<p>Even more advanced tables are possible. We apply extra styling in case you specify a <code>rowspan</code> or <code>colspan</code> attribute for the <code>&lt;th&gt;</code> tags of the table header.</p>
+			
+				<figure>   
+				  <table>
+					<thead>
+					<tr>
+					  <th rowspan="2">Name</th>
+					  <th colspan="2">CSS File</th>
+					  <th rowspan="2"></th>
+					  <th colspan="5">Browser Support</th>
+					  <th rowspan="2">Dependency</th>
+					  <th rowspan="2">License</th>
+					</tr>
+					<tr>
+					  <td><abbr title="Lines of Code">LOC</abbr></td><td>Size <span data-tooltip="Size of the readable, non-minified code (these tiny libs don't need minimizers)"><b>ⓘ</b></span></td>
+					  <td><img src="https://edent.github.io/SuperTinyIcons/images/svg/chrome.svg" width="20"></td>
+					  <td><img src="https://edent.github.io/SuperTinyIcons/images/svg/firefox.svg" width="20"></td>
+					  <td><img src="https://edent.github.io/SuperTinyIcons/images/svg/safari.svg" width="20"></td>
+					  <td><img src="https://edent.github.io/SuperTinyIcons/images/svg/edge.svg" width="20"></td>
+					  <td><img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Internet_Explorer_10%2B11_logo.svg" width="20"></td>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+					  <td>Classless</td>
+					  <td>400</td><td>11.8 kB</td>
+					  <td></td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✘</td>
+					  <td>none</td>
+					  <td>MIT</td>
+					</tr>
+					<tr><td>Classless Tiny</td>
+					  <td>91</td><td>2.7 kB</td>
+					  <td></td><td>✔</td><td>✔</td><td>?</td><td>✔</td><td>✘</td>
+					  <td>none</td>
+					  <td>MIT</td>
+					</tr>
+					<tr>
+					  <td><a href="http://getskeleton.com/">Skeleton</a></td>
+					  <td>400</td><td>11.2 kB</td>
+					  <td></td><td>✔</td><td>✔</td><td>✔</td><td>?</td><td>✔</td>
+					  <td>normalize</td>
+					  <td>MIT</td>
+					</tr>
+					<tr>
+					  <td><a href="https://milligram.io/">Milligram</a></td>
+					  <td>600</td><td>10.3 kB</td>
+					  <td></td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>?</td>
+					  <td>normalize 8.0</td>
+					  <td>MIT</td>
+					</tr>
+					<tr>
+					  <td><a href="https://oxal.org/projects/sakura/">Sakura</a></td>
+					  <td>165</td><td>3.3 kB</td>
+					  <td></td><td>✔</td><td>✔</td><td>?</td><td>?</td><td>?</td>
+					  <td>(normalize)</td>  <!-- Sakura only recommends normalize -->
+					  <td>MIT</td>
+					</tr>
+					</tbody>  
+				  </table>
+				  <figcaption>A more complex table. Still no classes.</figcaption> 
+				</figure>
+			
+			
+			
+				  <h3>Figures</h3>
+				  <p>Visual elements are important components for appealing documents. Figures such as diagrams or graphs should be encapsulated within a figure element. The image within the figure will be centered by default and shrinks with the screen width.</p>
+				  <figure>
+					<img src="http://placekitten.com/480/320" alt="Image alt text">
+					<!-- <img src="http://placekitten.com/180/320" alt="Image alt text"> -->
+					<figcaption>This is the first figure of this article that has a caption. The label with number will be inserted automatically if placed inside an article.</figcaption>
+				  </figure>
+			
+				  <p>How about subfigures?</p>
+				  <figure>
+					<figure>
+					  <img src="http://placekitten.com/240/320" alt="Image alt text">
+					  <figcaption>First Subfigure</figcaption>
+					</figure>
+					<figure>
+					  <img src="http://placekitten.com/420/320" alt="Image alt text">
+					  <figcaption>Second Subfigure</figcaption>
+					</figure>
+					<figcaption>Example of a figure with two subfigures. Left you see a cat, right you see also a cat.</figcaption>
+				  </figure>
+			
+			
+			
+				  <aside>Floating images could be described in a side note.</aside>
+				  <p>
+					<img src="http://placekitten.com/120/120" alt="Image alt text"/>
+					Inline <code>img</code> tags within a <code>p</code> tag will float to the right side and are suitable for smaller images that should not appear in their own figure environment. Floats will be cleared by the next heading.
+				  </p>
+			
+			
+			
+			
+				  <h3>Code Listings</h3>
+				  <p>You can use inline code, such as <code>div</code>, or show keyboard inputs, such as <kbd>Ctrl+C</kbd>. 
+				  However, larger code examples require their own block environment.</p>
+				  
+					<pre><code class="language-c">main(int a){
+			  println("hello world")
+			}</code></pre>
+			
+				  <p>If you want to provide a caption for the listing, you have to place it inside a figure environment and use the <code>&lt;figcaption&gt;</code>. If the element before the caption is <code>&lt;pre&gt;</code>, it will be automatically labeled <q>Listing</q>.</p>
+				  <figure>
+					<pre><code class="language-c">main(int a){
+			  println("hello world")
+			}</code></pre>
+					<figcaption>The caption for the listing.</figcaption>        
+				  </figure>
+			
+					
+				  <p>While dynamic code highlighting does not work without JavaScript, you can use a static, CSS-based code highlighter that will do the styling based on <code>&lt;span&gt;</code> tags with classes.</p>
+			
+			
+				  <h3>References</h3>
+				  <ol>
+					<li><a href="https://www.w3.org/TR/css-values-3/">W3C: <q>CSS Values and Units Module Level 3</q>, 2019</a></li>
+					<li><a href="https://en.wikipedia.org/wiki/HTML5">Wikipedia: <q>HTML5</q></a></li>
+					<li><a href="https://en.wikiquote.org/wiki/Richard_Feynman#The_Meaning_of_It_All_(1999)">Richard P. Feynman: “The Meaning of It All: Thoughts of a Citizen-Scientist”, 1997</a></li>
+				  </ol>
+			
+				</section>
+			
+	</main>
+
+</body>
+
+</html>
