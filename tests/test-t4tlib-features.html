@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2022-02-04" />
+  <meta name="keywords" content="Markdown, Pandoc, Example" />
+  <title>T4Tlib Testsite</title>
+
+  <link rel="stylesheet" href="https://classless.de/classless.css">
+  <link rel="stylesheet" href="../css/classless-pandoc.css" />
+
+  <script defer type="text/javascript" src="../js/parts/auto-katex.js"></script>
+  <script defer type="text/javascript" src="../js/parts/auto-tablesort.js"></script>
+  <script defer type="text/javascript" src="../js/parts/auto-tabbox.js"></script>
+  <script defer type="text/javascript" src="../js/parts/auto-anchors.js"></script>
+
+  <link rel="stylesheet" href="../css/parts/auto-anchors.css" />
+</head>
+<body>
+
+<header id="title-block-header" style="overflow-x: hidden;">
+<h1 class="title">T4Tlib Feature Test</h1>
+
+<div class="autorow">
+    <p class="author">Emanuel Regnath
+        <br><small><a href="mailto:emanuel.regnath@tum.de">emanuel.regnath@tum.de</a></small>
+    </p>
+    <p class="author">Second Author
+      <br><small><a href="mailto:emanuel.regnath@tum.de">emanuel.regnath@tum.de</a></small>
+  </p>
+</div>
+<p class="date">2022-02-04</p>
+</header>
+
+<main>
+
+  <article>
+
+    <h2>Feature: Auto Anchors</h2>
+    <p>Every paragraph like this should have a link icon after it, when you hover over it.</p>
+
+    <h3>A Subheading for auto-anchors</h3>
+    <p>Also h3 headings should have an anchor?</p>
+
+
+    <h2>Feature: Auto Collabsible lists</h2>
+    <p>If you have a list of lists, then they should be collapsible</p>
+    <ul>
+      <li>List Heading 1
+        <ul>
+          <li>Sub-Item 1</li>
+          <li>Sub-Item 2</li>
+          <li>Sub-Item 3</li>
+        </ul>
+      </li>
+      <li>List Heading 2 without subitems
+      </li>
+      <li>List Heading 3
+        <ul>
+          <li>Sub-Item 1</li>
+          <li>Sub-Item 2</li>
+          <li>Sub-Item 3</li>
+        </ul>
+      </li>
+    </ul>
+    
+    
+    
+    <h2>Feature: Auto Tabbox</h2>
+    <!-- ----------------------------------------------------------------- -->
+    <p>Automaticall create tabboxes for certain content. It should be as easy as enclosing a section of text inside a <code>&lt;div class="tabbox"></code>. Any type of heading will be the tabbox heading. It uses <code><a href="../js/parts/auto-tabbox.js">js/auto-tabbox.js</a></code> to render tabboxes.</p>
+    
+    
+    
+    <div class="tabbox">
+      <div>
+        <h4>First Tab h4</h4>
+        <p>This is a paragraph inside tab 1.</p>
+        <div>A div inside as well</div>
+      </div>
+
+      <div>
+        <h4>Second Tab h4</h4>
+        <h5>Heading inside Tab h5</h5>
+        <p>This is a paragraph inside a tab.</p>
+      </div>
+        
+    
+    
+    </div>
+
+    <p>Current Problem: Still requires divs around each heading.</p>
+
+
+
+    <h2>Feature: Auto Tablesort</h2>
+    <!-- ----------------------------------------------------------------- -->
+    <p>Tables are important and it should be possible to sort any table automatically.</p>
+
+    <figure>   
+      <table>
+        <thead>
+        <tr>
+          <th rowspan="2">Name</th>
+          <th colspan="2">CSS File</th>
+          <th rowspan="2"></th>
+          <th colspan="5">Browser Support</th>
+          <th rowspan="2">Dependency</th>
+          <th rowspan="2">License</th>
+        </tr>
+        <tr>
+          <td><abbr title="Lines of Code">LOC</abbr></td><td>Size <span data-tooltip="Size of the readable, non-minified code (these tiny libs don't need minimizers)"><b>ⓘ</b></span></td>
+          <td><img src="https://edent.github.io/SuperTinyIcons/images/svg/chrome.svg" width="20"></td>
+          <td><img src="https://edent.github.io/SuperTinyIcons/images/svg/firefox.svg" width="20"></td>
+          <td><img src="https://edent.github.io/SuperTinyIcons/images/svg/safari.svg" width="20"></td>
+          <td><img src="https://edent.github.io/SuperTinyIcons/images/svg/edge.svg" width="20"></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Internet_Explorer_10%2B11_logo.svg" width="20"></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Classless</td>
+          <td>400</td><td>11.8 kB</td>
+          <td></td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>✘</td>
+          <td>none</td>
+          <td>MIT</td>
+        </tr>
+        <tr><td>Classless Tiny</td>
+          <td>91</td><td>2.7 kB</td>
+          <td></td><td>✔</td><td>✔</td><td>?</td><td>✔</td><td>✘</td>
+          <td>none</td>
+          <td>MIT</td>
+        </tr>
+        <tr>
+          <td><a href="http://getskeleton.com/">Skeleton</a></td>
+          <td>400</td><td>11.2 kB</td>
+          <td></td><td>✔</td><td>✔</td><td>✔</td><td>?</td><td>✔</td>
+          <td>normalize</td>
+          <td>MIT</td>
+        </tr>
+        <tr>
+          <td><a href="https://milligram.io/">Milligram</a></td>
+          <td>600</td><td>10.3 kB</td>
+          <td></td><td>✔</td><td>✔</td><td>✔</td><td>✔</td><td>?</td>
+          <td>normalize 8.0</td>
+          <td>MIT</td>
+        </tr>
+        <tr>
+          <td><a href="https://oxal.org/projects/sakura/">Sakura</a></td>
+          <td>165</td><td>3.3 kB</td>
+          <td></td><td>✔</td><td>✔</td><td>?</td><td>?</td><td>?</td>
+          <td>(normalize)</td>  <!-- Sakura only recommends normalize -->
+          <td>MIT</td>
+        </tr>
+        </tbody>  
+      </table>
+      <figcaption>A more complex table. Still no classes.</figcaption> 
+    </figure>
+
+
+  </article>
+
+</main>
+
+
+
+
+
+
+
+
+<h2 id="toc-title">Table of Contents</h2>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#demo-files" id="toc-demo-files">Demo Files</a></li>
+<li><a href="#getting-started" id="toc-getting-started">Getting
+Started</a></li>
+<li><a href="#folder-structure" id="toc-folder-structure">Folder
+Structure</a></li>
+<li><a href="#todo" id="toc-todo">ToDo</a></li>
+<li><a href="#automatic-additions-test"
+id="toc-automatic-additions-test">Automatic Additions Test</a></li>
+<li><a href="#additional-syntax-test"
+id="toc-additional-syntax-test">Additional Syntax Test</a></li>
+<li><a href="#table-test" id="toc-table-test">Table Test</a></li>
+<li><a href="#inline-html" id="toc-inline-html">Inline HTML</a></li>
+<li><a href="#fontawesome-unicode-icons-"
+id="toc-fontawesome-unicode-icons-">FontAwesome Unicode Icons
+🏆</a></li>
+<li><a href="#future-ideas" id="toc-future-ideas">Future Ideas</a></li>
+<li><a href="#related-projects" id="toc-related-projects">Related
+Projects</a></li>
+</ul>
+</nav>
+<article>
+<p>Markdown is great but limited. <strong>qdoc</strong> is a small
+collection of addons for the Markdown converter <a
+href="https://pandoc.org">Pandoc</a> to extend the possibilities of
+Markdown. In particular, qdoc adds</p>
+<ul>
+<li><strong>True Multi-Output:</strong> You can convert the same source
+file to <code>html</code>, <code>gfm</code>, or <code>pdf</code> and it
+will look great.
+<ul>
+<li><strong><a href="#math-support">Math Support</a>:</strong> You can
+typeset math in <code>tex</code> and it will be rendered for every
+output.</li>
+<li><strong><a href="#fontawesome-unicode-icons-">Icon
+Support</a>:</strong> Use unicode icons that will be rendered with <a
+href="https://fontawesome.com/">FontAwesome</a> when available and
+otherwise fallback to native icons.</li>
+<li><strong>No Artefacts:</strong> If a feature is not supported for one
+output type, it will not cause troubles and rendered in a simpler
+form.</li>
+</ul></li>
+<li><strong>Additional Syntax:</strong>
+<ul>
+<li><strong>Inline Diagrams:</strong> You can embedd code for diagrams
+in the <code>.md</code> and qdoc will render the image. Currently, we
+support <code>matplotlib</code>, <code>ggplot</code>, <code>tikz</code>,
+<code>plantuml</code></li>
+<li><strong>Colored Boxes:</strong> You can add boxes to seperate
+special content from the normal text flow.</li>
+<li><strong>Collapse Details:</strong> Hide additional info by default
+and reveal it only when the user clicks on it.</li>
+<li><strong>Include Files:</strong> You can include the content of other
+<code>.md</code> files.</li>
+</ul></li>
+<li><strong>Awesome HTML:</strong> If the output is <code>html</code>,
+qdoc will add bonus features to enhance readability.
+<ul>
+<li><strong>Dark Mode:</strong> You can read the content in dark
+theme.</li>
+<li><strong>Adjust Font Size:</strong> You can increase or decrease the
+font size.</li>
+<li><strong>Print Friendly:</strong> Looks nice on A4 paper when
+printed.</li>
+<li><strong>Heading Anchors:</strong> automatic anchors at
+<code>h2</code> headings for one-click links.</li>
+</ul></li>
+</ul>
+<section id="demo-files" class="level2">
+<h2>Demo Files</h2>
+<p>To see qDoc output have a look at the following Demos</p>
+<ul>
+<li><a href="presentations/t4t-slides.html">HTML Slides</a> (<a
+href="">Source</a>)</li>
+<li><a href="qdoc-paper.html">HTML Paper</a></li>
+</ul>
+</section>
+<section id="getting-started" class="level2">
+<h2>Getting Started</h2>
+<p>Only 4 small steps are required to build your first document.</p>
+<section id="1-clone-this-repo" class="level4">
+<h4>1. Clone this repo.</h4>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:emareg/qdoc.git</span></code></pre></div>
+</section>
+<section id="2-open-and-edit-my-first-templatemd" class="level4">
+<h4>2. open and edit <code>my-first-template.md</code></h4>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xdg-open</span> src/my-first-template.md</span></code></pre></div>
+</section>
+<section id="3-build-the-file-using-make" class="level4">
+<h4>3. build the file using <code>make</code>:</h4>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span></span></code></pre></div>
+</section>
+<section id="4-open-buildmy-first-templatehtml-in-a-browser"
+class="level4">
+<h4>4. open <code>build/my-first-template.html</code> in a browser</h4>
+</section>
+</section>
+<section id="folder-structure" class="level2">
+<h2>Folder Structure</h2>
+<p><code>qDoc</code></p>
+</section>
+<section id="todo" class="level2">
+<h2>ToDo</h2>
+<ul>
+<li>SetUp GitHook for testing a fresh Ubuntu Install</li>
+<li>Test for Windows with CMake?</li>
+</ul>
+</section>
+<section id="automatic-additions-test" class="level2">
+<h2>Automatic Additions Test</h2>
+<p>To illustrate how certain features work, we will showcase them in the
+following. This <code>README.md</code> is already conveted by qdoc. The
+qdoc source file is <a
+href="../src/README.md"><code>src/README.md</code></a>, and the html
+version can be found in <code>docs/</code>.</p>
+<section id="math-support" class="level3">
+<h3>Math Support</h3>
+<p>Math is well supported for every output. For
+<abbr title="Hypertext Markup Language">HTML</abbr> we render math via
+<a href="https://katex.org">KaTeX</a>. If you read this on GitHub, math
+will be rendered as an <code>svg</code> image. For PDF, math is
+supported natively by LaTeX.</p>
+<p>There is inline math like <span class="math inline">\sqrt{x^2 +
+\frac{1}{2}}</span> and display math like</p>
+<p><span
+class="math display">f_X(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}</span></p>
+<p>The equation above is created by typesetting</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode tex"><code class="sourceCode latex"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$$f_X(x)=</span><span class="sc">\frac</span><span class="ss">{1}{</span><span class="sc">\sqrt</span><span class="ss">{2</span><span class="sc">\pi\sigma</span><span class="ss">^2}}e^{-</span><span class="sc">\frac</span><span class="ss">{(x-</span><span class="sc">\mu</span><span class="ss">)^2}{2</span><span class="sc">\sigma</span><span class="ss">^2}}$$</span></span></code></pre></div>
+</section>
+<section id="acronym-resolver" class="level3">
+<h3>Acronym Resolver</h3>
+<p>Acronyms such as <abbr title="Universal Serial Bus">USB</abbr> or
+<abbr title="Basic Input/Output System">BIOS</abbr> or
+<abbr title="Scalable Vector Graphics">SVG</abbr> or
+<abbr title="Joint Photographic Experts Group">JPEG</abbr> do not need
+explanations anymore. If you do not know it just move the mouse over
+it.</p>
+</section>
+<section id="dark-mode" class="level3">
+<h3>Dark Mode</h3>
+<p>You can switch to dark mode using the button on the top right.</p>
+</section>
+</section>
+<section id="additional-syntax-test" class="level2">
+<h2>Additional Syntax Test</h2>
+<p>The features in this section use novel syntax.</p>
+<section id="boxes-and-cards" class="level3">
+<h3>Boxes and Cards</h3>
+<p>To mark special content, you may use boxes. Simply start a line with
+<code>KEY:</code>, where <code>KEY</code> is a keyword from one of the
+categories:</p>
+<ul>
+<li>Hints/Examples: <code>Example</code>, <code>Hint</code>,
+<code>Tipp</code></li>
+<li>Notes: <code>Note</code>, <code>Notice</code>,
+<code>Info</code></li>
+<li>Warning: <code>Warn</code>, <code>Warning</code>,
+<code>Danger</code>, <code>Caution</code></li>
+</ul>
+<p>For example if write a paragraph like</p>
+<pre><code>Note: This is a simple note box.</code></pre>
+<p>qdoc will produce</p>
+<div class="card info">
+<div class="card-header">
+<p><strong>ℹ️ Note:</strong></p>
+</div>
+<div class="card-body">
+<p> This is a simple note box.</p>
+</div>
+</div>
+<p>The same works with <code>Example: This box ...</code></p>
+<div class="card hint">
+<div class="card-header">
+<p><strong>💡 Example:</strong></p>
+</div>
+<div class="card-body">
+<p> This box illustrates an example box. We could also show <span
+class="math inline">\sqrt{2}≈1.41</span>.</p>
+</div>
+</div>
+<div class="card warn">
+<div class="card-header">
+<p><strong>⚠️ Warn:</strong></p>
+</div>
+<div class="card-body">
+<p> Do not do this.</p>
+</div>
+</div>
+<blockquote>
+<div class="card warn">
+<div class="card-header">
+<p><strong>⚠️ Warning:</strong></p>
+</div>
+<div class="card-body">
+<p> Do not run. Running is too fast.</p>
+</div>
+</div>
+</blockquote>
+<blockquote>
+<p><strong>Warning: Do not run.</strong> Running is too fast.</p>
+</blockquote>
+<Blockquote class="warning">
+<p><strong>Warning:</strong></p>
+<p>Do not run. Running is bad.</p>
+</Blockquote>
+</section>
+<section id="simple-layout-with-autorow-html-only" class="level3">
+<h3>Simple Layout with <code>.autorow</code> (HTML only)</h3>
+<p>Create rows and collumns with a <code>div</code> that has the class
+<code>autorow</code>. Our <code>CSS</code> will treat any element that
+is a direct child as a column.</p>
+<div class="autorow">
+<section id="first-column" class="level4">
+<h4>First Column</h4>
+<ul>
+<li>A simple List</li>
+<li>Next item</li>
+<li>Another item</li>
+</ul>
+</section>
+<section id="the-second-column" class="level4">
+<h4>The Second Column</h4>
+<p>With Another Text</p>
+<ul>
+<li>Start of second list</li>
+<li>Item of second list</li>
+</ul>
+</section>
+</div>
+</section>
+<section id="hiding-details" class="level3">
+<h3>Hiding Details</h3>
+<p>Details: These are additional informations</p>
+<p>A simple Q&amp;A style unfolding is possible with
+<code>Q: / A:</code> syntax:</p>
+<pre><code>Q: What is the answer?
+A: This paragraph is the answer.
+The next line will also be included. </code></pre>
+<details class="">
+  <summary>
+What is the answer?
+</summary>
+<p> This paragraph is the answer. The next line will also be
+included.</p>
+</details>
+<p>Only if there is a blank line, a new paragraph is started, which will
+be outside of the box.</p>
+<section id="details-some-details-page" class="level4">
+<h4>Details: Some details page.</h4>
+<p>This is an entire section that will be hidden.</p>
+<p>This means multiple paragraphs will disappear.</p>
+<p>Until the next section.</p>
+<section id="details-a-nested-page" class="level5">
+<h5>Details: A Nested Page</h5>
+<p>More hidden content</p>
+</section>
+</section>
+<section id="example-calculation" class="level4">
+<h4>Example Calculation</h4>
+<p>Uses homomorphic encryption. Works with
+<abbr title="Rivest, Shamir and Adleman">RSA</abbr> or
+<abbr title="Elliptic Curve Cryptography">ECC</abbr> crypto.</p>
+<p><span class="math inline">G ⊆ ℤ_p</span> is a cyclic group, <span
+class="math inline">g</span> is a Generator for it. Commitment: <span
+class="math inline">H(m,r) = g^m • h^r ∈ G_p</span></p>
+</section>
+
+
+<h2>Tabbox Test</h2>
+
+<p>First an empty Tabbox</p>
+
+<div class="tabbox">
+</div>
+
+
+<p>Second a normal tabbox</p>
+
+<div class="tabbox">
+  <section id="case-1" class="level4">
+  <h4>Case 1</h4>
+  <p>With Text one.</p>
+  </section>
+
+  <section id="case-2" class="level4">
+  <h4>Case 2</h4>
+  <p>With Another Text</p>
+  </section>
+</div>
+
+
+<p>A tabbox without sections</p>
+
+<div class="tabbox">
+  <h4>Case 1</h4>
+  <p>With Text one.</p>
+
+  <h4>Case 2</h4>
+  <p>With Another Text</p>
+
+</div>
+
+<p>A tabbox with h2 headings</p>
+
+<div class="tabbox">
+  <section id="case-3" class="level4">
+  <h2>Case 3</h2>
+  <p>With Text one.</p>
+  </section>
+
+  <section id="case-4" class="level4">
+  <h2>Case 2</h2>
+  <p>With Another Text</p>
+  </section>
+</div>
+
+
+
+
+</section>
+<section id="figures" class="level3">
+<h3>Figures</h3>
+<section id="standard-image" class="level4">
+<h4>Standard Image</h4>
+<figure>
+<img src="res/pd-media/d0e170da2a3efc774c104cf7efb6c57edad22ac2.png"
+alt="Mountains as a test image from the web." />
+<figcaption aria-hidden="true">Mountains as a test image from the
+web.</figcaption>
+</figure>
+</section>
+<section id="tikz-image-in-code-block" class="level4">
+<h4>Tikz Image in Code Block</h4>
+<figure>
+  <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   viewBox="0 0 243.396 239.548"
+   height="239.548"
+   width="243.396"
+   xml:space="preserve"
+   id="svg2"
+   version="1.1"><metadata
+     id="metadata8"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+     id="defs6" /><g
+     transform="matrix(1.3333333,0,0,-1.3333333,0,239.548)"
+     id="g10"><g
+       transform="translate(88.556,89.83)"
+       id="g12"><g
+         id="g14"><g
+           id="g16"><g
+             id="g18"><path
+               id="path20"
+               style="fill:none;stroke:#000000;stroke-width:0.3985;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m 93.79362,0 c 0,4.8343 -3.91886,8.75317 -8.75317,8.75317 -4.8343,0 -8.75317,-3.91887 -8.75317,-8.75317 0,-4.8343 3.91887,-8.75317 8.75317,-8.75317 4.83431,0 8.75317,3.91887 8.75317,8.75317 z" /><g
+               transform="translate(82.548,-3.21)"
+               id="g22"><g
+                 id="g24"><g
+                   transform="translate(-171.104,-86.62)"
+                   id="g26"><text
+                     id="text30"
+                     style="font-variant:normal;font-weight:normal;font-size:9.96259975px;font-family:CMR10;-inkscape-font-specification:CMR10;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                     transform="matrix(1,0,0,-1,171.104,86.62)"><tspan
+                       id="tspan28"
+                       y="0"
+                       x="0">1</tspan></text>
+<g
+                     transform="translate(171.104,86.62)"
+                     id="g32" /></g></g><g
+                 transform="translate(-82.548,3.21)"
+                 id="g34" /></g></g><path
+             id="path36"
+             style="fill:none;stroke:#000000;stroke-width:0.3985;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+             d="M 84.21257,11.83553 C 80.27829,39.82884 62.68657,64.0413 40.50262,74.86119" /><g
+             transform="matrix(-0.89877,0.43835,-0.43835,-0.89877,40.50264,74.86119)"
+             id="g38"><g
+               id="g40"><path
+                 id="path42"
+                 style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="M 3.58653,0 C 2.52383,0.19925 0.797,0.797 -0.3985,1.49438 V -1.49438 C 0.797,-0.797 2.52383,-0.19925 3.58653,0" /></g></g><g
+             id="g44"><path
+               id="path46"
+               style="fill:none;stroke:#000000;stroke-width:0.3985;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m 35.03246,80.879 c 0,4.8343 -3.91889,8.75319 -8.75319,8.75319 -4.83431,0 -8.75317,-3.91889 -8.75317,-8.75319 0,-4.8343 3.91886,-8.75318 8.75317,-8.75318 4.8343,0 8.75319,3.91888 8.75319,8.75318 z" /><g
+               transform="translate(23.788,77.668)"
+               id="g48"><g
+                 id="g50"><g
+                   transform="translate(-112.344,-167.498)"
+                   id="g52"><text
+                     id="text56"
+                     style="font-variant:normal;font-weight:normal;font-size:9.96259975px;font-family:CMR10;-inkscape-font-specification:CMR10;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                     transform="matrix(1,0,0,-1,112.344,167.498)"><tspan
+                       id="tspan54"
+                       y="0"
+                       x="0">2</tspan></text>
+<g
+                     transform="translate(112.344,167.498)"
+                     id="g58" /></g></g><g
+                 transform="translate(-23.788,-77.668)"
+                 id="g60" /></g></g><path
+             id="path62"
+             style="fill:none;stroke:#000000;stroke-width:0.3985;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+             d="M 14.76685,83.74931 C -13.07246,88.65799 -41.53653,79.40869 -58.68208,61.65384" /><g
+             transform="matrix(-0.69464,-0.71935,0.71935,-0.69464,-58.68207,61.65385)"
+             id="g64"><g
+               id="g66"><path
+                 id="path68"
+                 style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="M 3.58653,0 C 2.52383,0.19925 0.797,0.797 -0.3985,1.49438 V -1.49438 C 0.797,-0.797 2.52383,-0.19925 3.58653,0" /></g></g><g
+             id="g70"><path
+               id="path72"
+               style="fill:none;stroke:#000000;stroke-width:0.3985;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m -60.04633,49.98538 c 0,4.83432 -3.91888,8.75319 -8.75318,8.75319 -4.83431,0 -8.75318,-3.91887 -8.75318,-8.75319 0,-4.8343 3.91887,-8.75317 8.75318,-8.75317 4.8343,0 8.75318,3.91887 8.75318,8.75317 z" /><g
+               transform="translate(-71.29,46.775)"
+               id="g74"><g
+                 id="g76"><g
+                   transform="translate(-17.266,-136.605)"
+                   id="g78"><text
+                     id="text82"
+                     style="font-variant:normal;font-weight:normal;font-size:9.96259975px;font-family:CMR10;-inkscape-font-specification:CMR10;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                     transform="matrix(1,0,0,-1,17.266,136.605)"><tspan
+                       id="tspan80"
+                       y="0"
+                       x="0">3</tspan></text>
+<g
+                     transform="translate(17.266,136.605)"
+                     id="g84" /></g></g><g
+                 transform="translate(71.29,-46.775)"
+                 id="g86" /></g></g><path
+             id="path88"
+             style="fill:none;stroke:#000000;stroke-width:0.3985;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+             d="M -75.08644,39.92369 C -88.35757,14.96402 -88.35757,-14.96402 -76.77014,-36.757" /><g
+             transform="matrix(0.46945,-0.88293,0.88293,0.46945,-76.77016,-36.757)"
+             id="g90"><g
+               id="g92"><path
+                 id="path94"
+                 style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="M 3.58653,0 C 2.52383,0.19925 0.797,0.797 -0.3985,1.49438 V -1.49438 C 0.797,-0.797 2.52383,-0.19925 3.58653,0" /></g></g><g
+             id="g96"><path
+               id="path98"
+               style="fill:none;stroke:#000000;stroke-width:0.3985;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m -60.04633,-49.98538 c 0,4.8343 -3.91888,8.75317 -8.75318,8.75317 -4.83431,0 -8.75318,-3.91887 -8.75318,-8.75317 0,-4.83432 3.91887,-8.75319 8.75318,-8.75319 4.8343,0 8.75318,3.91887 8.75318,8.75319 z" /><g
+               transform="translate(-71.29,-53.195)"
+               id="g100"><g
+                 id="g102"><g
+                   transform="translate(-17.266,-36.635)"
+                   id="g104"><text
+                     id="text108"
+                     style="font-variant:normal;font-weight:normal;font-size:9.96259975px;font-family:CMR10;-inkscape-font-specification:CMR10;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                     transform="matrix(1,0,0,-1,17.266,36.635)"><tspan
+                       id="tspan106"
+                       y="0"
+                       x="0">4</tspan></text>
+<g
+                     transform="translate(17.266,36.635)"
+                     id="g110" /></g></g><g
+                 transform="translate(71.29,53.195)"
+                 id="g112" /></g></g><path
+             id="path114"
+             style="fill:none;stroke:#000000;stroke-width:0.3985;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+             d="m -61.17342,-59.07388 c 19.63689,-20.33481 48.10096,-29.58411 72.40824,-25.29816" /><g
+             transform="matrix(0.9848,0.17363,-0.17363,0.9848,11.2348,-84.37206)"
+             id="g116"><g
+               id="g118"><path
+                 id="path120"
+                 style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="M 3.58653,0 C 2.52383,0.19925 0.797,0.797 -0.3985,1.49438 V -1.49438 C 0.797,-0.797 2.52383,-0.19925 3.58653,0" /></g></g><g
+             id="g122"><path
+               id="path124"
+               style="fill:none;stroke:#000000;stroke-width:0.3985;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+               d="m 35.03246,-80.879 c 0,4.8343 -3.91889,8.75318 -8.75319,8.75318 -4.83431,0 -8.75317,-3.91888 -8.75317,-8.75318 0,-4.8343 3.91886,-8.75319 8.75317,-8.75319 4.8343,0 8.75319,3.91889 8.75319,8.75319 z" /><g
+               transform="translate(23.788,-84.088)"
+               id="g126"><g
+                 id="g128"><g
+                   transform="translate(-112.344,-5.742)"
+                   id="g130"><text
+                     id="text134"
+                     style="font-variant:normal;font-weight:normal;font-size:9.96259975px;font-family:CMR10;-inkscape-font-specification:CMR10;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                     transform="matrix(1,0,0,-1,112.344,5.742)"><tspan
+                       id="tspan132"
+                       y="0"
+                       x="0">5</tspan></text>
+<g
+                     transform="translate(112.344,5.742)"
+                     id="g136" /></g></g><g
+                 transform="translate(-23.788,84.088)"
+                 id="g138" /></g></g><path
+             id="path140"
+             style="fill:none;stroke:#000000;stroke-width:0.3985;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+             d="m 37.27914,-76.43336 c 25.40743,12.39206 42.99915,36.60452 46.43427,61.04628" /><g
+             transform="matrix(0.13918,0.99025,-0.99025,0.13918,83.71341,-15.3871)"
+             id="g142"><g
+               id="g144"><path
+                 id="path146"
+                 style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                 d="M 3.58653,0 C 2.52383,0.19925 0.797,0.797 -0.3985,1.49438 V -1.49438 C 0.797,-0.797 2.52383,-0.19925 3.58653,0" /></g></g></g></g></g></g></svg><figcaption>Example TikZ Picture</figcaption>
+</figure>
+
+</section>
+<section id="plot-using-plotly" class="level4">
+<h4>Plot using Plotly</h4>
+</section>
+</section>
+<section id="tables" class="level3">
+<h3>Tables</h3>
+<table>
+<caption>Browser Support Overview.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Name</th>
+<th>CSS File</th>
+<th>Browser Support</th>
+<th>Dependency</th>
+<th>License</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Classless</td>
+<td>400 11.2 kB</td>
+<td>✔ ✔ ? ✔ ✘</td>
+<td>none</td>
+<td>MIT</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Skeleton</td>
+<td>400 11.2 kB</td>
+<td>✔ ✔ ✔ ? ✔</td>
+<td>normalize</td>
+<td>MIT</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Milligram</td>
+<td>600 10.3 kB</td>
+<td>✔ ✔ ✔ ✔ ?</td>
+<td>normalize 8.0</td>
+<td>MIT</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sakura</td>
+<td>165 3.3 kB</td>
+<td>✔ ✔ ? ? ?</td>
+<td>(normalize)</td>
+<td>MIT</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Browser Support Overview Caption 2.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Right</th>
+<th style="text-align: left;">Left</th>
+<th style="text-align: center;">Center</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">12</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: center;">12</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">123</td>
+<td style="text-align: left;">123</td>
+<td style="text-align: center;">123</td>
+<td>123</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: center;">1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Table: Demonstration of simple table syntax.</p>
+</section>
+<section id="csv-tables" class="level3">
+<h3>CSV Tables</h3>
+<pre class="table" type="pipe" data-aligns="LCR"
+data-caption="A **caption**" data-header="yes"><code>Fruit, Quantity, Price  
+apples, 15, 3.24  
+oranges, 12, 2.22  </code></pre>
+</section>
+</section>
+<section id="table-test" class="level2">
+<h2>Table Test</h2>
+<p>Bla Bla Bla</p>
+<table>
+<caption>this is the table caption [cap]: #cap</caption>
+<thead>
+<tr class="header">
+<th>Default</th>
+<th style="text-align: left;">left</th>
+<th style="text-align: center;">Center</th>
+<th style="text-align: right;">Right</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>High</td>
+<td style="text-align: left;">Cat 1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: right;">100.00</td>
+</tr>
+<tr class="even">
+<td>High</td>
+<td style="text-align: left;">Cat 2</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: right;">85.50</td>
+</tr>
+<tr class="odd">
+<td>Low</td>
+<td style="text-align: left;">Cat 3</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: right;">80.00</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="inline-html" class="level2">
+<h2>Inline HTML</h2>
+<p><img height="64" src="https://latex.codecogs.com/svg.latex?f_X(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}"></p>
+<table>
+<thead>
+<tr>
+<th rowspan="2">
+Name
+</th>
+<th colspan="2">
+CSS File
+</th>
+<th rowspan="2">
+</th>
+<th colspan="5">
+Browser Support
+</th>
+<th rowspan="2">
+Dependency
+</th>
+<th rowspan="2">
+License
+</th>
+</tr>
+<tr>
+<td>
+LOC
+</td>
+<td>
+Size
+</td>
+<td>
+<img src="https://edent.github.io/SuperTinyIcons/images/svg/chrome.svg" width="20">
+</td>
+<td>
+<img src="https://edent.github.io/SuperTinyIcons/images/svg/firefox.svg" width="20">
+</td>
+<td>
+<img src="https://edent.github.io/SuperTinyIcons/images/svg/safari.svg" width="20">
+</td>
+<td>
+<img src="https://edent.github.io/SuperTinyIcons/images/svg/edge.svg" width="20">
+</td>
+<td>
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Internet_Explorer_10%2B11_logo.svg" width="20">
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Classless
+</td>
+<td>
+400
+</td>
+<td>
+11.2 kB
+</td>
+<td>
+</td>
+<td>
+✔
+</td>
+<td>
+✔
+</td>
+<td>
+?
+</td>
+<td>
+✔
+</td>
+<td>
+❌
+</td>
+<td>
+none
+</td>
+<td>
+MIT
+</td>
+</tr>
+<tr>
+<td>
+Classless Tiny
+</td>
+<td>
+91
+</td>
+<td>
+2.6 kB
+</td>
+<td>
+</td>
+<td>
+✔
+</td>
+<td>
+✔
+</td>
+<td>
+?
+</td>
+<td>
+✔
+</td>
+<td>
+❌
+</td>
+<td>
+none
+</td>
+<td>
+MIT
+</td>
+</tr>
+<tr>
+<td>
+<a href="http://getskeleton.com/">Skeleton</a>
+</td>
+<td>
+400
+</td>
+<td>
+11.2 kB
+</td>
+<td>
+</td>
+<td>
+✔
+</td>
+<td>
+✔
+</td>
+<td>
+✔
+</td>
+<td>
+?
+</td>
+<td>
+✔
+</td>
+<td>
+normalize
+</td>
+<td>
+MIT
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://milligram.io/">Milligram</a>
+</td>
+<td>
+600
+</td>
+<td>
+10.3 kB
+</td>
+<td>
+</td>
+<td>
+✔
+</td>
+<td>
+✔
+</td>
+<td>
+✔
+</td>
+<td>
+✔
+</td>
+<td>
+?
+</td>
+<td>
+normalize 8.0
+</td>
+<td>
+MIT
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://oxal.org/projects/sakura/">Sakura</a>
+</td>
+<td>
+165
+</td>
+<td>
+3.3 kB
+</td>
+<td>
+</td>
+<td>
+✔
+</td>
+<td>
+✔
+</td>
+<td>
+?
+</td>
+<td>
+?
+</td>
+<td>
+?
+</td>
+<td>
+(normalize)
+</td>
+<td>
+MIT
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="fontawesome-unicode-icons-" class="level2">
+<h2>FontAwesome Unicode Icons 🏆</h2>
+<p>FontAwesome 6 is now supporting official unicode endpoints! This
+means that you can simply copy a unicode symbol from the following list
+and it will either use the unicode symbol or FontAwesome symbol, which
+is loaded automatically. See <a
+href="https://github.com/FortAwesome/Font-Awesome/issues/222">FA-Issue#222</a></p>
+<style>
+@font-face {
+  font-family: 'QFontAwesome';
+  font-style: normal;
+  /*font-weight: 900;*/
+  /*font-display: block;*/
+  src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/fa-solid-900.ttf');
+  unicode-range: U+2000-2FFF, U+F000-F200, U+1F000-1FFFF;
+}
+html body { font-family: QFontAwesome, 'Open Sans', sans-serif; }
+.qfa-table tr td:first-child{font-family: 'Open Sans';}
+</style>
+<p>However, not all icons from FontAwesome have a unicode equivalent and
+so not every icon is supported. Pick one from the list below. Some
+examples of how the different unicode enpoints might look like.</p>
+<div class="qfa-table">
+<table>
+<thead>
+<tr class="header">
+<th>UTF8</th>
+<th>FA</th>
+<th>Codepoint</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>⚠</td>
+<td>⚠</td>
+<td><code>U+26A0</code></td>
+</tr>
+<tr class="even">
+<td>🏠</td>
+<td>🏠</td>
+<td><code>U+1F3E0</code></td>
+</tr>
+<tr class="odd">
+<td>🔍</td>
+<td>🔍</td>
+<td><code>U+1F50D</code></td>
+</tr>
+<tr class="even">
+<td>🔧</td>
+<td>🔧</td>
+<td><code>U+1F527</code></td>
+</tr>
+<tr class="odd">
+<td>🖩</td>
+<td>🖩</td>
+<td><code>U+1F5A9</code></td>
+</tr>
+<tr class="even">
+<td>🛡</td>
+<td>🛡</td>
+<td><code>U+1F6E1</code></td>
+</tr>
+<tr class="odd">
+<td>🔄</td>
+<td>🔄</td>
+<td><code>U+1F504</code></td>
+</tr>
+</tbody>
+</table>
+<p>Emoji: 😀 🤣 😉 ☹ 😠 😢 😭 👍 👎<br> Arrows: ←→ ↑ ↓ ⇄ 🔄 ⤴ ⤵ ↺ ↻<br>
+People: 👤 👥 🗨<br> Devices: 🎙 🎧 📞 🔌 💻 🖥 🖨 ⌨ 🖱<br> Buildings: 🏢 🏛
+🏠 🏥<br> Data: 📎 💼 📔 📄 🔖 🏷 ✉ 📂 🔗<br> Rating: ⭐ 🏆 ✔ ❌ ☑ ❎<br>
+Security: 🔑 🔒 🔓 🛡<br> Concepts: 🌍 🌐 🌙 ☀ 📶 ⚙💡 ☁ 👁 🧭 🌡 💧 🎲 🧩
+🎨 🎓 ✏ 📌 🧬 🧪 🏴 🔧<br> Announce: ⚠ 🔔 🔕 📢 <br> Time: ⏱ 🕓<br></p>
+</div>
+<p>Misc: ☰𝄘</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">@font-face</span> {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font-family</span>: <span class="st">&#39;QFontAwesome&#39;</span><span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font-style</span>: <span class="dv">normal</span><span class="op">;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">src</span>: <span class="fu">url(</span><span class="st">&#39;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/fa-solid-900.ttf&#39;</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">unicode-range</span>: U<span class="dv">+200</span>0<span class="dv">-2</span>FFF<span class="op">,</span> U+F000-F200<span class="op">,</span> U<span class="dv">+1</span>F000-1FFFF<span class="op">;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section id="future-ideas" class="level2">
+<h2>Future Ideas</h2>
+<ul>
+<li><p><strong>Tables from
+<abbr title="Comma-Separated Values">CSV</abbr> file:</strong></p>
+<ul>
+<li>https://github.com/ickc/pantable</li>
+<li>https://github.com/baig/pandoc-csv2table</li>
+</ul></li>
+<li><p><strong>Inline Variables:</strong> From environment, build
+etc</p></li>
+<li><p><strong>unfold <code>&lt;detail&gt;</code> when printing. Also
+wrap code lines! (same for other overflow things)</strong></p>
+<ul>
+<li>have <code>...</code> as summary within code blocks to unfold
+more</li>
+</ul></li>
+<li><p><strong>Common TeX Macros:</strong> e.g. <code>\sk</code> for
+secret key</p></li>
+<li><p><strong>Icon-Set:</strong> Use font-awesome or iconpark. Use one
+common naming and dispatch to a certain implementation.</p>
+<ul>
+<li><a
+href="https://fonts.google.com/icons?selected=Material+Icons">Font
+Awesome</a>: 1700 free icons, 15k paid, commercial</li>
+<li><a
+href="https://fonts.google.com/icons?selected=Material+Icons">Material
+Design</a>: 2000 icons, open-source</li>
+<li><a href="https://icons8.com/line-awesome">Line Awesome</a>: 1380
+icons, open-source</li>
+<li><a href="https://iconpark.oceanengine.com/official">IconPark</a>:
+2500 icons</li>
+<li><a href="https://icons.getbootstrap.com/">Bootstrap Icons</a>: 1600
+icons, open-source</li>
+<li><a href="https://iconsvg.xyz/">IconSVG</a>: 250 icons, open
+source</li>
+<li><a href="https://linearicons.com/free">Linearicons</a>: 190 free,
+1000 paid</li>
+</ul></li>
+</ul>
+<p>Use unicode for it</p>
+<ul>
+<li><p><strong>Automactic Indexing:</strong> Automatically create an
+index of all files.</p></li>
+<li><p><strong>Autocrop large code listings:</strong> If a code listing
+is too long, you should only show the first few lines and expand by
+demand</p></li>
+</ul>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> matches<span class="kw">[</span><span class="dv">0</span><span class="kw">]</span><span class="at">.length</span> <span class="kw">==</span> <span class="dv">2</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    toc_string <span class="kw">+=</span> <span class="st">&quot;* [</span><span class="sc">#{</span>matches<span class="kw">[</span><span class="dv">1</span><span class="kw">]</span><span class="sc">}</span><span class="st">](\#</span><span class="sc">#{</span>slug<span class="sc">}</span><span class="st">)\n&quot;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">elsif</span> (matches<span class="kw">[</span><span class="dv">0</span><span class="kw">]</span><span class="at">.length</span> <span class="kw">==</span> <span class="dv">3</span>) <span class="kw">&amp;&amp;</span> <span class="dv">false</span> <span class="co"># true if TOC depth should be 2</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    toc_string <span class="kw">+=</span> <span class="st">&quot;    - [</span><span class="sc">#{</span>matches<span class="kw">[</span><span class="dv">1</span><span class="kw">]</span><span class="sc">}</span><span class="st">](\#</span><span class="sc">#{</span>slug<span class="sc">}</span><span class="st">)\n&quot;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span></code></pre></div>
+<details>
+<summary>
+… show more.
+</summary>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode ruby"><code class="sourceCode ruby"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># double check if wee need a TOC</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> text<span class="at">.include?</span>(<span class="vs">&#39;{{LOCAL_TOC}}&#39;</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    text <span class="kw">=</span> text<span class="at">.sub</span>(<span class="ss">/\{\{LOCAL_TOC\}\}/</span>) <span class="kw">{</span> <span class="kw">|</span>match<span class="kw">|</span> <span class="st">&quot;\n\n&quot;</span> <span class="kw">+</span> toc_string <span class="kw">+</span> <span class="st">&quot;\n\n&quot;</span> <span class="kw">}</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">elsif</span> num_of_secs <span class="kw">&gt;</span> <span class="cn">MIN_HEADINGS_FOR_LOCAL_TOC</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    text <span class="kw">=</span> text<span class="at">.sub</span>(<span class="ss">/(?:^|\n)(\n#+ +.*?)\s*(?:\n|$)/</span>) <span class="kw">{</span> <span class="kw">|</span>match<span class="kw">|</span> <span class="st">&quot;\n\n&quot;</span> <span class="kw">+</span> toc_string <span class="kw">+</span> <span class="st">&quot;\n\n&quot;</span> <span class="kw">+</span> match <span class="kw">}</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span></code></pre></div>
+</details>
+</section>
+<section id="related-projects" class="level2">
+<h2>Related Projects</h2>
+<ul>
+<li><p><a href="https://www.mkdocs.org/">MkDocs</a></p></li>
+<li><p><a
+href="https://squidfunk.github.io/mkdocs-material/reference/#configuration">Material
+MkDoc</a></p></li>
+<li><p><a
+href="https://facelessuser.github.io/pymdown-extensions/">PyMarkdown</a></p></li>
+<li><p><a href="https://blog.getpelican.com/">Pelican Static Site
+Generator</a></p></li>
+<li><p>AnyType</p></li>
+<li><p>https://sli.dev/</p></li>
+</ul>
+</section>  
+</article>
+</body>
+</html>

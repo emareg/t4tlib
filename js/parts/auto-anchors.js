@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // p_query = 'article h2 ~ p, article h3 ~ p';
-    p_query = 'article section > p, article figure > figcaption';
+    p_query = 'article section > p, article h2 ~ p, article figure > figcaption';
     addIDs(p_query, 'p-');
     ps = document.querySelectorAll(p_query);
     for (const p of ps){
