@@ -89,7 +89,8 @@ local function card(heading, body, class)
     divBody = pandoc.Div({body}, {class='card-body'})
   end 
   if FORMAT:match 'gfm' then
-    return pandoc.BlockQuote({pandoc.Para({pandoc.Strong(heading), table.unpack(body.content)})})
+    -- print(table.unpack(body))
+    return pandoc.BlockQuote({pandoc.Para({pandoc.Strong(table.unpack(heading)), pandoc.Space(), table.unpack(body)})})
   end 
   return pandoc.Div({divHead, divBody}, {class = 'card admonition '..class, markdown=''})
 end
@@ -163,6 +164,7 @@ function Para(el)
     end
     for key, val in pairs(CARD_MAP) do
       if starts_with(p[1], val.trigger) then
+        -- print(table.unpack(p[3]))
         return card(p[2], p[3], key)
       end
     end
