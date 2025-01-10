@@ -23,8 +23,8 @@ function addBreadCrumbs(el){
 
 // scroll
 /* When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar */
-var prevScrollpos = window.pageYOffset;
 // window.onscroll = function() {
+var prevScrollpos = window.pageYOffset;
 window.addEventListener('scroll', function() {
   var currentScrollPos = window.pageYOffset;
   if (prevScrollpos > currentScrollPos) {
@@ -59,9 +59,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   ctrlBar = document.createElement('nav');
   ctrlBar.id = 'ctrlbar'
-  ctrlBar.style = "position: fixed; width: 100%; top: 0";
+  ctrlBar.style = "position: fixed; width: 100%; top: 0; background-color: var(--cbg);";
   ctrlBar.innerHTML = '<div class="qdoc-buttons noprint"><span id="qbread"></span><a onclick="toggleDarkMode(this)">☪</a>&nbsp;<a onclick="addFontSize(-1)">ᴀ-</a>&nbsp;|&nbsp;<a onclick="addFontSize(1)">A+</a></div>'
-  document.body.appendChild(ctrlBar);
+  document.body.prepend(ctrlBar);
   addBreadCrumbs(document.getElementById("qbread"))
 
 })
