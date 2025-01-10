@@ -1,0 +1,12 @@
+/* Green: #41AAB3
+DarkGreen: #00646E
+Gray: #879BAA */
+
+:root{
+	/* foreground   | background color */
+	--cfg:   #433;    --cbg:    #fff;
+	--cdark: #888;    --clight: #f5f6f7;
+	--cmed:  #879BAA;
+	--clink: #07c;
+	--cemph: #41AAB3;    --cemphbg: #0881;
+}
